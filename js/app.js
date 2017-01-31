@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // Angular module init
 // -----------------------------------------------------------------------------
-var core = angular.module('core',['hljs']);
+var core = angular.module('core',['ngRoute','hljs']);
 
 var masterController = function ($rootScope, $scope, $window) {
 
@@ -12,7 +12,6 @@ var masterController = function ($rootScope, $scope, $window) {
     });
 
     return {}
-
 }
 
 // Configure system

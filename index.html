@@ -19,6 +19,8 @@
   <script src="dist/libs/angular-highlightjs.min.js"></script>
   <!-- Main angular app -->
   <script src="js/app.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/home.ctrl.js"></script>
 
 </head>
 
@@ -30,12 +32,8 @@
 		<div ng-include="'templates/jumbo.html'"></div>
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div ng-include="'templates/wip.html'"></div>
-                <div ng-include="'templates/about.html'"></div>
-        		<div ng-include="'templates/sources-demo.html'"></div>
-                <!-- To be moved to its own route -->
-        		<div ng-include="'pages/angularjs/basics.html'"></div>
+            <div class="col-md-10 col-md-offset-1" ng-view>
+            <!-- angular pages should load here -->
             </div>
         </div>
 
