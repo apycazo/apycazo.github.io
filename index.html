@@ -1,35 +1,793 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="https://icons.better-idea.org/icon?size=80..120..200&url=github.com">
+	<title>Andres Picazo -- GitHub site</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"/>
+<!--:style-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<!--:script-->
+<style>
+    /* Required by fixed navbar */
+    body { padding-top: 70px; padding-left: 20px; padding-right: 20px; }
+    /*.content-viewport { border-left: 1px solid black; }*/
+    .content-selector { text-align: center }
+    /* Overrides default labels, too small for this */
+    .marksite .label { font-size: 100%; padding: .2em .6em .1em }
+    .footer { background-color: #697075; min-height: 50px; line-height: 50px; text-align: center; margin-top:25px }
+</style>
 
-    <link rel="icon" href="dist/res/fav.ico">
-
-    <title>Andres Picazo</title>
-
-    <!-- third party dependencies -->
-    <script src="dist/deps.all.js"></script>
-    <link rel="stylesheet" href="dist/deps.all.css" type="text/css"/>
-    <!-- sources -->
-    <script src="dist/src.all.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+    angular.module('marksite',[]).controller('marksite-controller', ['$rootScope','$scope', function ($root, $scope) {
+        $root.bookmark = { chapter: 0, page: 0 };
+    }]);
+</script>
 
 </head>
+<body ng-app="marksite" class="marksite">
 
-<body ng-app="core">
+    <div ng-controller="marksite-controller"> <!-- future controller goes here -->
+        <div>
+            <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#" ng-click="$root.bookmark.chapter=0;$root.bookmark.page=0">Home</a>
+                    </div>
 
-    <div ng-controller="masterController">
-
-        <div ng-include="'templates/navbar.html'"></div>
-        <div ng-include="'templates/jumbo.html'"></div>
-
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>
+                <a href="#" ng-click="$root.bookmark.chapter=1;$root.bookmark.page=0">Marksite</a>
+            </li><li>
+                <a href="#" ng-click="$root.bookmark.chapter=2;$root.bookmark.page=0">Apps</a>
+            </li><li>
+                <a href="#" ng-click="$root.bookmark.chapter=3;$root.bookmark.page=0">Java</a>
+            </li><li>
+                <a href="#" ng-click="$root.bookmark.chapter=4;$root.bookmark.page=0">Spring Boot</a>
+            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1" ng-view>
-                <!-- angular pages should load here -->
-            </div>
+            <div class="col-md-11 col-md-offset-1">
+                
+        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==1">
+            <h1>Page select</h1><hr>
+            <ul class="list-group">
+                
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=0" >
+                Configuration
+            </a>
+
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=1" >
+                Sample
+            </a>
+            </ul>
         </div>
 
-        <div ng-include="'templates/footer.html'"></div>
+        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==2">
+            <h1>Page select</h1><hr>
+            <ul class="list-group">
+                
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=0" >
+                Amazon
+            </a>
 
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=1" >
+                IDEA
+            </a>
+            </ul>
+        </div>
+
+        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==3">
+            <h1>Page select</h1><hr>
+            <ul class="list-group">
+                
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=0" >
+                V8 Snippets
+            </a>
+
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=1" >
+                Optional
+            </a>
+
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=2" >
+                Network
+            </a>
+            </ul>
+        </div>
+
+        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==4">
+            <h1>Page select</h1><hr>
+            <ul class="list-group">
+                
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=0" >
+                Spring context
+            </a>
+
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=1" >
+                Configuration properties
+            </a>
+
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=2" >
+                MVC resources
+            </a>
+
+            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==3}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=3" >
+                Jackson serialization
+            </a>
+            </ul>
+        </div>
+<!--:content-selector-->
+                <div class="content-viewport col-md-11" ng-show="$root.bookmark.chapter==0 && $root.bookmark.page==0">
+<h1> Andres Picazo GitHub page</h1>
+<br><br>
+This is the landing page for my github repositories. A small entry for each project is included here. For more detailed info about
+each one please select the appropriate menu option.
+<br><br>
+Remember that this page is intended to be a reference for myself, since most projects already published here are meant to be reminders
+and references about implementations, software usage and random tips I have found useful in the past.
+<br><br>
+<h1> The projects</h1>
+<hr>
+<h3> Codex</h3>
+Right now this is my most up to date reference project. I hope to keep here all the miscellaneus reference projects I actually use.
+Currently this included java-spring, angularjs and nodejs projects. I have removed most of the projects I had on github, and will include
+them here when I have refactored and updated them.
+<br><br>
+More specific links to:
+<br><br>
+<ul><li><a href="https://github.com/apycazo/codex">Main repository</a>.</li>
+<li><a href="https://github.com/apycazo/codex/tree/master/codex-spring/codex-spring-base">Spring boot miscellaneus</a></li>
+<li><a href="https://github.com/apycazo/codex/tree/master/codex-spring/codex-spring-rest">Spring boot rest/MVC services</a></li>
+<li><a href="https://github.com/apycazo/codex/tree/master/codex-spring/codex-spring-security">Spring security</a></li>
+<li><a href="https://github.com/apycazo/codex/tree/master/codex-nodejs">NodeJS</a></li>
+<li><a href="https://github.com/apycazo/codex/tree/master/codex-angularjs">AngularJS</a></li>
+</ul><br><br>
+<h3> Legacy</h3>
+Most old code is now here, at least the code I did not want to get rid off right now. Whatever is useful will be refactored into <span class="label label-danger">codex</span>
+entries.
+<br><br>
+<h3> Marksite</h3>
+This is a very small project I did to quickly set up this page. I could have used jekyll or something, but since I did not have anything
+really useful done with nodejs, and I wanted a few specific features on the page generation, I decided to go with a quick implementation of
+a markdown to html site generator.
+<br><br>
+Right now it does just what I wanted it to do, if I find it worth the time, I will improve the code whenever I have the time.
+<br><br>
+The sources can be found <a href="https://github.com/apycazo/marksite">here</a>.
+<br><br>
+</div>
+                <div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==0">
+<h1> Configuring marksite</h1>
+<hr>
+<h2> Base config</h2>
+Marksite requires a json configuration file. By default it will try to find it on <span class="label label-danger">./config.json</span>, but a parameter can be passed with
+the actual path, for example: <span class="label label-danger">node marksite.js test-config.js</span>.
+<br><br>
+<h2> Config file structure</h2>
+An example for a config file looks like this:
+<pre><code class="javascript">
+{
+    "target": "./index.html",
+    "title": "Andres Picazo -- GitHub site",
+    "favicon": "https://icons.better-idea.org/icon?size=80..120..200&url=github.com",
+    "brand": "Apycazo",
+    "index": "index.md",
+    "scripts": [
+        "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js",
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js",
+        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"
+    ],
+    "styles": [
+        "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"
+    ],
+    "menu": [
+        {
+            "title": "Home 2",
+            "pages": [
+                { "title": "Test", "src": "pages/test.md" },
+                { "title": "Stub 1", "src": "pages/stub-1.md" }
+            ]
+        },
+        {
+            "title": "About",
+            "pages": [
+                { "title": "Stub 1", "src": "pages/stub-1.md" },
+                { "title": "Stub 2", "src": "pages/stub-2.md" }
+            ]
+        }
+    ]
+}
+</code></pre>
+<br><br>
+<h2> Config file parameters</h2>
+<ul><li><strong>target</strong>: this is where do you want the <tt>index.html</tt> file to be generated.</li>
+<li><strong>title</strong>: the page title.</li>
+<li><strong>favicon</strong>: If set, use this as a favicon source.</li>
+<li><strong>brand</strong>: page navigation bar brand text. This will be linked to the 'index' page.</li>
+<li><strong>index</strong>: what markdown page to use for the landing page (brand will link to this page).</li>
+<li><strong>scripts</strong>: this will be added in the 'scripts' section for the page. Note that angular is actually mandatory.</li>
+<li><strong>styles</strong>: same, but for text/css files.</li>
+<li><strong>menu</strong>: this describes the site pages, and allows for some organization. Each entry is considered a 'chapter', and a menu will be generated for each. If a chapter contains more than one page, a page selector will be added to the view.</li>
+</ul><br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==1">
+<h1> Marksite demo and test page</h1>
+<hr>
+Italic text uses simple asterisks, like: <i>this is italic text on line 1</i>.  <br>
+Bold text uses double asteriks, like: <strong>this is bold text on line 2</strong>.  <br>
+Striked-through text uses markers, like <strike>this is not right on line 3</strike>.  <br>
+Also, monospaced is between double ticks: <tt>this is robot talking on line 4</tt>.  <br>
+This is some <strong>bold text</strong> and <strong>even more bold, with 1234, and (){}_-</strong>.  <br>
+Also, <span class="label label-danger">labels</span> can be used to <span class="label label-danger">really</span> remark something.  <br>
+Links like <a href="http://apycazo.github.io">my sample page</a> are supported.  <br>
+<br><br>
+<h2> Line breaks</h2>
+<hr>
+Line breaks are created using two or more spaces.  <br>
+This two lines
+are actually rendered together.  <br>
+<br><br>
+<h2> Code view</h2>
+This is an example of java code highlighting:  <br>
+<pre><code class="java">
+@Test
+public void checkSessionType ()
+{
+    given()
+            // sends auth info without expecting a requirement for it
+            .auth().preemptive().basic("gandalf", "the-grey")
+            // now the query should go ok
+            .when().get("private/service").then().statusCode(HttpStatus.OK.value());
+
+    when().get("private/service").then().statusCode(HttpStatus.UNAUTHORIZED.value());
+}
+</code></pre>
+<br><br>
+<h2> Quoting</h2>
+<hr>
+This are some quoting examples:  <br>
+<blockquote> This is a one line quote
+</blockquote><br><br>
+This should be left out
+<br><br>
+<blockquote> This is a multiline quote.
+<br> It actually continues!.
+<br> And <strong>by the way</strong>, other markdown <span class="label label-danger">still</span> works!
+</blockquote><br><br>
+<h2> Lists</h2>
+<hr>
+Unordered list:  <br>
+<ul><li>element 1</li>
+<li>element 2</li>
+<li>element 3</li>
+</ul><br><br>
+Ordered list:
+<ol><li> element 1</li>
+<li> element 2</li>
+<li> element 3</li>
+</ol><br><br>
+<h2> Lorem ipsum</h2>
+<hr>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vehicula risus sapien, ut euismod purus gravida id. Nulla ultricies leo odio, ut euismod augue imperdiet vel. Phasellus quam nisi, elementum dignissim ex sed, ornare semper est. Aliquam luctus risus quis sapien semper, eget rutrum leo bibendum. Donec vel mi at urna posuere porta. Nulla tristique pharetra ex at congue. Nunc non vehicula orci. Donec dignissim arcu commodo eros consectetur commodo.
+<br><br>
+<h1> Header L1</h1>
+<h2> Header L2</h2>
+<h3> Header L3</h3>
+<h4> Header L4</h4>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==0">
+<h1> Amazon VM config</h1>
+<hr>
+<h2> Links</h2>
+<a href="http://technotes.khitrenovich.com/opening-ssh-aws-hosted-linux-servers-mremoteng/">MRemoteNG config</a>  <br>
+<a href="https://aws.amazon.com/es/getting-started/tutorials/launch-a-virtual-machine/">Getting started</a>
+<br><br>
+<h2> Login</h2>
+User names seems to include:
+<br><br>
+<ol><li> root</li>
+<li> ec2-user</li>
+<li> ubuntu</li>
+</ol><br><br>
+<h2> Reenable password access</h2>
+<ol><li> Login as root using key pairs</li>
+<li> Create user with  <span class="label label-danger"><tt>sudo adduser USERNAME</tt></span> and set password  <span class="label label-danger"><tt>sudo passwd USERNAME</tt></span></li>
+<li> Edit /etc/ssh/sshd_config setting: <span class="label label-danger"><tt>PasswordAuthentication yes</tt></span></li>
+<li> Restart daemon: <span class="label label-danger"><tt>sudo service sshd restart</tt></span></li>
+</ol><br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==1">
+<h1> IntelliJ IDEA notes</h1>
+<hr>
+<h2> Plugins</h2>
+<br><br>
+<ul><li>DBNavigator</li>
+<li>Awesome console</li>
+<li>Lombok</li>
+<li>Grep console</li>
+<li>VisualVM Launcher (if https://visualvm.github.io/download.html is installed)</li>
+<li>Quick notes</li>
+</ul><br><br>
+<h2> Settings</h2>
+<br><br>
+Editor ->Code style -> Java
+- Braces placement: next line (class and method declaration)
+<br><br>
+Editor -> Code style -> YAML
+- Indent: 4
+<br><br>
+Editor -> General -> Auto import (Java)
+- Check 'optimize imports on the fly'
+- Check 'Add unambiguous imports on the fly'
+<br><br>
+<h2> Live templates</h2>
+Editor -> Live templates
+Create a new group (for example, 'custom')
+<br><br>
+Sample live template (abbreviation: 't-rest-echo', applicable in 'Java declaration')
+<pre><code class="java">
+@RequestMapping(value = "", method = RequestMethod.GET)
+public ResponseEntity<Map<String,Object>> echo ()
+{
+    Map<String,Object> map = new LinkedHashMap<>();
+    map.put("success", true);
+    map.put("method", "echo");
+    map.put("ts", System.currentTimeMillis());
+    return new ResponseEntity<>(map, HttpStatus.OK);
+}
+</code></pre>
+<br><br>
+<h2> Shortcuts</h2>
+<pre><code>
+| Operation                  | Shortcut                |  
+|----------------------------| ------------------------|  
+| Auto format code           | Ctrl + Alt + L          |  
+| Comment code               | Ctrl + /                |  
+| Open 'find everywhere' tab | Shift x2                |  
+| New line (begin)           | Shift + Enter           |  
+| Duplicate line             | Ctrl + D                |  
+| Remove line                | Ctrl + Y                |  
+| Move line UP               | Ctrl + Shift + UP       |  
+| Move line DOWN             | Ctrl + Shift + DOWN     |  
+| Select custom fold (fcom)  | Ctrl + Alt + .          |  
+| Create test                | Alt + Enter             |  
+| Override/Implement method  | Ctrl + O                |  
+| Custom fold                | (select) Ctrl + Alt + T |  
+| Insert live template       | Ctrl + J                |  
+| Wrap with live template    | Ctrl + Alt + J          |  
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==0">
+<h1> Java 8 Snippets</h1>
+<hr>
+<pre><code class="java">
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+public class J8Reference {
+
+    static String string = "0123456789ABCDEF";
+
+    static interface Converter {
+
+        String convert(String string);
+
+        default String safeConvert(String string)
+        {
+            return string == null ? convert("") : convert(string);
+        }
+    }
+
+    static class ConverterMethods {
+
+        String formatA(String string)
+        {
+            return String.format("A [%s]", string);
+        }
+
+        String formatB(String string)
+        {
+            return String.format("B [%s]", string);
+        }
+    }
+
+    static class TestSubject {
+
+        int intValue;
+        String stringValue;
+        long longValue;
+
+        public TestSubject(int intValue, String stringValue, long longValue)
+        {
+            this.intValue = intValue;
+            this.stringValue = stringValue;
+            this.longValue = longValue;
+        }
+
+        public int getIntValue()
+        {
+            return intValue;
+        }
+
+        public String getStringValue()
+        {
+            return stringValue;
+        }
+
+        public long getLongValue()
+        {
+            return longValue;
+        }
+    }
+
+    public static void testPredicate()
+    {
+
+        Predicate<String> p = (x) -> x.length() > 10;
+        System.out.println("Predicate value is " + p.test(string));
+    }
+
+    public static void testFunction()
+    {
+
+        Function<String, Integer> sizeOf = (x) -> {
+            return x == null ? 0 : x.trim().length();
+        };
+
+        System.out.println("Length of string is " + sizeOf.apply(string));
+        System.out.println("Length of null string is " + sizeOf.apply(null));
+    }
+
+    public static void testConsumer()
+    {
+
+        Consumer<String> consumer = (x) -> {
+            System.out.println("Value to consume is " + x);
+        };
+
+        consumer.accept(string);
+    }
+
+    public static void testDoubleColon()
+    {
+
+        ConverterMethods cm = new ConverterMethods();
+        Converter cA = cm::formatA;
+        Converter cB = cm::formatB;
+
+        Consumer<String> c = (x) -> {
+            System.out.println("Consuming string");
+            System.out.println(cA.safeConvert(x));
+            System.out.println(cB.safeConvert(x));
+        };
+
+        c.accept(string);
+        c.accept(null);
+    }
+
+    private static List<TestSubject> generateSubjects () {
+
+        List<TestSubject> list = new LinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            TestSubject ts = new TestSubject(i, "i=" + i, i*10);
+            list.add(ts);
+        }
+        return list;
+    }
+
+    public static void testSorter()
+    {
+        System.out.println("Testing list sorting");
+        List<TestSubject> list = generateSubjects();
+        Consumer<TestSubject> c = (x) -> {
+            System.out.printf("[%d:%s:%d]%n",
+                    x.intValue,
+                    x.stringValue,
+                    x.longValue);
+        };
+
+        list.stream().forEach(c);
+        list.sort(
+                Comparator
+                        .comparing(TestSubject::getIntValue)
+                        .reversed()
+        );
+        System.out.println("Sorted");
+        list.stream().forEach(c);
+    }
+
+    public static void testArrayStream()
+    {
+        String[] strings = {"a", "b", "c"};
+        Arrays.stream(strings).forEach((x) -> {
+            System.out.println("Value is " + x);
+        });
+    }
+
+    public static void testMapReduce()
+    {
+
+        // Generate a value list
+        List<TestSubject> list = TestSubject.samples();
+        // Find the test subject with the longest string value
+        String s = list.stream()
+                .map(TestSubject::getStringValue)
+                .reduce("", (a, b) -> a.length() >= b.length() ? a : b);
+        System.out.println("Subjects are:");
+        list.stream().forEach((x) -> System.out.println(x.getStringValue()));
+        System.out.println("Longest values is :" + s);
+    }
+
+    public static void testSimpleCollect()
+    {
+        // Generate a value list
+        List<TestSubject> list = TestSubject.samples();
+        List<String> strList = list.stream()
+                .filter(p -> p.getIntValue() < 4)
+                .map(TestSubject::getStringValue)
+                .collect(Collectors.toList());
+
+        strList.stream().forEach(p -> System.out.println("Col: " + p));
+
+    }
+
+    public static void testGroupByCollect()
+    {
+        List<TestSubject> list = TestSubject.samples();
+        Map<Long, List<TestSubject>> strList = list
+                .stream()
+                .collect(Collectors.groupingBy(TestSubject::getLongValue));
+        strList.keySet().stream().forEach(
+                key -> {
+                    System.out.println("K:" + key);
+                    List<TestSubject> entry = strList.get(key);
+                    entry.stream().forEach(v -> {
+                        System.out.println("\tV:" + v.getStringValue());
+                    });
+                }
+        );
+    }
+
+    public static void testCollectionToMap()
+    {
+        List<TestSubject> list = TestSubject.samples();
+
+        // Alternate to Function.identity() is p -> p        
+        Map<Integer, TestSubject> map = list
+                .stream()
+                .collect(Collectors
+                        .toMap(TestSubject::getIntValue, Function.identity())
+                );
+
+        map.keySet().stream().forEach(
+                key -> {
+                    TestSubject value = map.get(key);
+                    System.out.println(key + ":" + value.getStringValue());
+                }
+        );
+    }
+
+}
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==1">
+<h1> Java 8 Optional</h1>
+<hr>
+<pre><code class="java">
+private static void testOptional ()
+{
+    log.info("Testing optional values");
+
+    String str = "string";
+    String emptyStr = "";
+    String nullStr = null;
+
+    String result;
+    result = Optional.ofNullable(nullStr).orElse("str is null");
+    log.info("Result (nullString) = '{}'", result);
+    // Logs: Result (nullString) = 'str is null'
+    result = Optional.ofNullable(emptyStr).orElse("str is null");
+    log.info("Result (emptyString) = '{}'", result);
+    // Logs: Result (emptyString) = ''
+    result = Optional.ofNullable(str).orElse("str is null");
+    log.info("Result (validString) = '{}'", result);
+    // Logs: Result (validString) = 'string'
+    result = Optional.of(emptyStr).orElse("str is null");
+    log.info("Result (emptyString, not nullable) = '{}'", result);
+    // Logs: Result (emptyString, not nullable) = ''
+}
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==2">
+<h1> Getting network interfaces</h1>
+<hr>
+<pre><code class="java">
+import static java.lang.System.out;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+
+public class ListNets {
+
+    public void listInterfaces()
+    {
+        try {
+            Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+            for (NetworkInterface netint : Collections.list(nets)) {
+                if (netint.isUp()) {
+                    displayInterfaceInformation(netint);
+                }
+            }
+        } catch (Exception e) {
+            out.println("Captured exception: " + e.getClass().getSimpleName());
+        }
+    }
+
+    public void displayInterfaceInformation(NetworkInterface netint) throws SocketException
+    {
+        out.printf("Display name: %s\n", netint.getDisplayName());
+        out.printf("Name: %s\n", netint.getName());
+        Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
+        List<InetAddress> list = Collections.list(inetAddresses);
+        list.forEach(addr -> {
+            out.printf("InetAddress: %s\n", addr);
+        });
+        out.printf("\n");
+    }
+}
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==0">
+<h1> Spring boot context </h1>
+<hr>
+<h3> Run after context loads</h3>
+<pre><code class="java">
+@Slf4j
+@Component
+public class AfterContextLoads implements ApplicationListener<ContextRefreshedEvent> {
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event)
+    {
+        log.info("--- READY ---");
+        // just so a report can be logger after startup.
+    }
+}
+</code></pre>
+<br><br>
+<h3> Test URL after context loads</h3>
+<pre><code class="java">
+@Slf4j
+@Component
+public class SetupTest implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
+
+    @Autowired
+    private ServletContext servletContext;
+
+    @Override
+    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event)
+    {
+        // Base url
+        String base = "http://127.0.0.1";
+        int port = event.getEmbeddedServletContainer().getPort();
+        String contextPath = servletContext.getContextPath();
+        String url = base + ":" + port + contextPath + "/echo-test";
+
+        RestTemplate rest = new RestTemplate();
+        try {            
+            URI uri = new URI(url);
+            ResponseEntity<String> response = rest.getForEntity(uri, String.class);
+            log.info("Echo test on {}", uri.toString());
+            log.info("Check response... {}", (response == null ? "KO" : "OK"));
+            if (response != null) {
+                log.info("Check status...   {}",
+                        (response.getStatusCode() != HttpStatus.OK ? "KO" : "OK"));
+                log.info("Check body...     {}",
+                        (response.getBody() == null || response.getBody().isEmpty() ? "KO" : "OK"));
+            }
+        } catch (URISyntaxException | RestClientException e) {
+            log.warn("Unable to generate test query url {}", url, e);
+        }
+    }
+}
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==1">
+<h1> Configuration properties</h1>
+<hr>
+<h3> Add properties without annotations</h3>
+<pre><code class="java">
+@Bean
+public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
+    PropertySourcesPlaceholderConfigurer propertyConfigurer = new PropertySourcesPlaceholderConfigurer();
+    propertyConfigurer.setLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/**/abc.properties"));
+    return propertyConfigurer;
+}
+
+</code></pre>
+<h3> Validate ConfigProperties fields</h3>
+<pre><code class="java">
+@NotNull
+@Pattern(regexp = "\\w+", message = "ID must only contains letters, numbers and '_'")
+private String id;
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==2">
+<h1> Resources</h1>
+<hr>
+<h3> Add path handlers</h3>
+<pre><code class="java">
+@Configuration
+@EnableWebMvc
+public class WebResourceConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/static/**/*")                
+                .addResourceLocations(
+                        "/resources/static/test",
+                        "/resources/static/common"
+                );
+    }
+}
+</code></pre>
+<br><br>
+</div>
+<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==3">
+<h1> Jackson json ignore</h1>
+<hr>
+<pre><code class="java">
+@JsonPropertyOrder({ "id", "firstname", "lastname" })
+@JsonInclude(Include.NON_EMPTY)
+public class User {
+    private Long id;
+    private String firstname;
+    private String lastname;
+}
+</code></pre>
+<br><br>
+</div>
+<!--:content-->
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            <p>Built with <a href="https://github.com/apycazo/marksite">Marksite</a></p>
+        </div>
     </div>
-
 </body>
 </html>

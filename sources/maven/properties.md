@@ -1,0 +1,22 @@
+# Maven external properties
+---
+```xml
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>properties-maven-plugin</artifactId>
+    <version>${properties.maven.plugin.version}</version>
+    <executions>
+        <execution>
+            <phase>initialize</phase>
+            <goals>
+                <goal>read-project-properties</goal>
+            </goals>
+            <configuration>
+                <files>
+                    <file>src/main/${env}/config-${env}.properties</file>
+                </files>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
