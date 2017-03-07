@@ -39,7 +39,7 @@ public ResponseEntity<Map<String,Object>> echo ()
 ```
 
 ## Shortcuts
-```
+
 | Operation                  | Shortcut                |  
 |----------------------------| ------------------------|  
 | Auto format code           | Ctrl + Alt + L          |  
@@ -56,4 +56,3 @@ public ResponseEntity<Map<String,Object>> echo ()
 | Custom fold                | (select) Ctrl + Alt + T |  
 | Insert live template       | Ctrl + J                |  
 | Wrap with live template    | Ctrl + Alt + J          |  
-```

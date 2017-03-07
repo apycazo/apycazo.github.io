@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="https://icons.better-idea.org/icon?size=80..120..200&url=github.com">
-	<title>Andres Picazo -- GitHub site</title>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"/>
-<!--:style-->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-<!--:script-->
+<link rel="icon" href="https://icons.better-idea.org/icon?size=80..120..200&url=github.com"><title>GitHub site [Andres Picazo]</title><link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"/><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 <style>
-    /* Required by fixed navbar */
     body { padding-top: 70px; padding-left: 20px; padding-right: 20px; }
-    /*.content-viewport { border-left: 1px solid black; }*/
-    .content-selector { text-align: center }
-    /* Overrides default labels, too small for this */
-    .marksite .label { font-size: 100%; padding: .2em .6em .1em }
+    .content-selector { text-align: center; padding-top: 20px; }
+    .marksite code { padding: 4px 4px; }
+    .marksite pre { padding: 0px; }
     .footer { background-color: #697075; min-height: 50px; line-height: 50px; text-align: center; margin-top:25px }
+    th, td { padding: 5px; border:1px solid black; }
 </style>
 
 <script>
@@ -30,359 +24,187 @@
 
 </head>
 <body ng-app="marksite" class="marksite">
-
-    <div ng-controller="marksite-controller"> <!-- future controller goes here -->
-        <div>
-            <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#" ng-click="$root.bookmark.chapter=0;$root.bookmark.page=0">Home</a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                <a href="#" ng-click="$root.bookmark.chapter=1;$root.bookmark.page=0">Marksite</a>
-            </li><li>
-                <a href="#" ng-click="$root.bookmark.chapter=2;$root.bookmark.page=0">Apps</a>
-            </li><li>
-                <a href="#" ng-click="$root.bookmark.chapter=3;$root.bookmark.page=0">Java</a>
-            </li><li>
-                <a href="#" ng-click="$root.bookmark.chapter=4;$root.bookmark.page=0">Spring Boot</a>
-            </li>
-                        </ul>
-                    </div>
+    <div ng-controller="marksite-controller">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="https://github.com/apycazo?tab=repositories">Andrew's GitHub</a>
                 </div>
-            </nav>
-        </div>
+                <div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="#" ng-click="$root.bookmark.chapter=0;$root.bookmark.page=0">Home</a></li>
+<li><a href="#" ng-click="$root.bookmark.chapter=1;$root.bookmark.page=0">Marksite</a></li>
+<li><a href="#" ng-click="$root.bookmark.chapter=2;$root.bookmark.page=0">Java</a></li>
+<li><a href="#" ng-click="$root.bookmark.chapter=3;$root.bookmark.page=0">Spring Boot</a></li>
+<li><a href="#" ng-click="$root.bookmark.chapter=4;$root.bookmark.page=0">Maven</a></li>
+<li><a href="#" ng-click="$root.bookmark.chapter=5;$root.bookmark.page=0">Applications</a></li></ul></div>
+            </div>
+        </nav>
         <div class="row">
-            <div class="col-md-11 col-md-offset-1">
-                
-        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==1">
-            <h1>Page select</h1><hr>
-            <ul class="list-group">
-                
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=0" >
-                Configuration
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=1" >
-                Sample
-            </a>
-            </ul>
-        </div>
-
-        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==2">
-            <h1>Page select</h1><hr>
-            <ul class="list-group">
-                
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=0" >
-                Amazon
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=1" >
-                IDEA
-            </a>
-            </ul>
-        </div>
-
-        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==3">
-            <h1>Page select</h1><hr>
-            <ul class="list-group">
-                
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=0" >
-                V8 Snippets
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=1" >
-                Optional
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=2" >
-                Network
-            </a>
-            </ul>
-        </div>
-
-        <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==4">
-            <h1>Page select</h1><hr>
-            <ul class="list-group">
-                
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=0" >
-                Spring context
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=1" >
-                Configuration properties
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=2" >
-                MVC resources
-            </a>
-
-            <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==3}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=3" >
-                Jackson serialization
-            </a>
-            </ul>
-        </div>
-<!--:content-selector-->
-                <div class="content-viewport col-md-11" ng-show="$root.bookmark.chapter==0 && $root.bookmark.page==0">
-<h1> Andres Picazo GitHub page</h1>
-<br><br>
-This is the landing page for my github repositories. A small entry for each project is included here. For more detailed info about
-each one please select the appropriate menu option.
-<br><br>
-Remember that this page is intended to be a reference for myself, since most projects already published here are meant to be reminders
-and references about implementations, software usage and random tips I have found useful in the past.
-<br><br>
-<h1> The projects</h1>
+<div class="content-viewport col-md-9 col-md-offset-1" ng-show="$root.bookmark.chapter==0 && $root.bookmark.page==0"><h1 id="andres-picazo-github-page">Andres Picazo GitHub page</h1>
+<p>This is the landing page for my github repositories. A small entry for each project is included here. For more detailed info about
+each one please select the appropriate menu option.</p>
+<p>Remember that this page is intended to be a reference for myself, since most projects already published here are meant to be reminders
+and references about implementations, software usage and random tips I have found useful in the past.</p>
+<h1 id="the-projects">The projects</h1>
 <hr>
-<h3> Codex</h3>
-Right now this is my most up to date reference project. I hope to keep here all the miscellaneus reference projects I actually use.
+<h3 id="codex">Codex</h3>
+<p>Right now this is my most up to date reference project. I hope to keep here all the miscellaneus reference projects I actually use.
 Currently this included java-spring, angularjs and nodejs projects. I have removed most of the projects I had on github, and will include
-them here when I have refactored and updated them.
-<br><br>
-More specific links to:
-<br><br>
-<ul><li><a href="https://github.com/apycazo/codex">Main repository</a>.</li>
+them here when I have refactored and updated them.</p>
+<p>More specific links to:</p>
+<ul>
+<li><a href="https://github.com/apycazo/codex">Main repository</a>.</li>
 <li><a href="https://github.com/apycazo/codex/tree/master/codex-spring/codex-spring-base">Spring boot miscellaneus</a></li>
 <li><a href="https://github.com/apycazo/codex/tree/master/codex-spring/codex-spring-rest">Spring boot rest/MVC services</a></li>
 <li><a href="https://github.com/apycazo/codex/tree/master/codex-spring/codex-spring-security">Spring security</a></li>
 <li><a href="https://github.com/apycazo/codex/tree/master/codex-nodejs">NodeJS</a></li>
 <li><a href="https://github.com/apycazo/codex/tree/master/codex-angularjs">AngularJS</a></li>
-</ul><br><br>
-<h3> Legacy</h3>
-Most old code is now here, at least the code I did not want to get rid off right now. Whatever is useful will be refactored into <span class="label label-danger">codex</span>
-entries.
-<br><br>
-<h3> Marksite</h3>
-This is a very small project I did to quickly set up this page. I could have used jekyll or something, but since I did not have anything
+</ul>
+<h3 id="legacy">Legacy</h3>
+<p>Most old code is now here, at least the code I did not want to get rid off right now. Whatever is useful will be refactored into <code>codex</code>
+entries.</p>
+<h3 id="marksite">Marksite</h3>
+<p>This is a very small project I did to quickly set up this page. I could have used jekyll or something, but since I did not have anything
 really useful done with nodejs, and I wanted a few specific features on the page generation, I decided to go with a quick implementation of
-a markdown to html site generator.
-<br><br>
-Right now it does just what I wanted it to do, if I find it worth the time, I will improve the code whenever I have the time.
-<br><br>
-The sources can be found <a href="https://github.com/apycazo/marksite">here</a>.
-<br><br>
+a markdown to html site generator.</p>
+<p>Right now it does just what I wanted it to do, if I find it worth the time, I will improve the code whenever I have the time.</p>
+<p>The sources can be found <a href="https://github.com/apycazo/marksite">here</a>.</p>
 </div>
-                <div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==0">
-<h1> Configuring marksite</h1>
+<div class="content-selector col-md-3" ng-show="$root.bookmark.chapter==1">
+            <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=0">
+                Config
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=1">
+                Demo
+            </a></ul>
+        </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==0"><h1 id="configuring-marksite">Configuring marksite</h1>
 <hr>
-<h2> Base config</h2>
-Marksite requires a json configuration file. By default it will try to find it on <span class="label label-danger">./config.json</span>, but a parameter can be passed with
-the actual path, for example: <span class="label label-danger">node marksite.js test-config.js</span>.
-<br><br>
-<h2> Config file structure</h2>
-An example for a config file looks like this:
-<pre><code class="javascript">
-{
-    "target": "./index.html",
-    "title": "Andres Picazo -- GitHub site",
-    "favicon": "https://icons.better-idea.org/icon?size=80..120..200&url=github.com",
-    "brand": "Apycazo",
-    "index": "index.md",
-    "scripts": [
-        "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js",
-        "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js",
-        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
-        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"
+<h2 id="base-config">Base config</h2>
+<p>Marksite requires a json configuration file. By default it will try to find it on <code>./config.json</code>, but a parameter can be passed with
+the actual path, for example: <code>node marksite.js test-config.js</code>.</p>
+<h2 id="config-file-structure">Config file structure</h2>
+<p>An example for a config file looks like this:</p>
+<pre><code class="lang-javascript">{
+    &quot;target&quot;: &quot;./index.html&quot;,
+    &quot;title&quot;: &quot;Andres Picazo -- GitHub site&quot;,
+    &quot;favicon&quot;: &quot;https://icons.better-idea.org/icon?size=80..120..200&amp;url=github.com&quot;,
+    &quot;brand&quot;: &quot;Apycazo&quot;,
+    &quot;index&quot;: &quot;index.md&quot;,
+    &quot;scripts&quot;: [
+        &quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js&quot;,
+        &quot;https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js&quot;,
+        &quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;,
+        &quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js&quot;
     ],
-    "styles": [
-        "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css",
-        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"
+    &quot;styles&quot;: [
+        &quot;https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css&quot;,
+        &quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css&quot;
     ],
-    "menu": [
+    &quot;menu&quot;: [
         {
-            "title": "Home 2",
-            "pages": [
-                { "title": "Test", "src": "pages/test.md" },
-                { "title": "Stub 1", "src": "pages/stub-1.md" }
+            &quot;title&quot;: &quot;Home 2&quot;,
+            &quot;pages&quot;: [
+                { &quot;title&quot;: &quot;Test&quot;, &quot;src&quot;: &quot;pages/test.md&quot; },
+                { &quot;title&quot;: &quot;Stub 1&quot;, &quot;src&quot;: &quot;pages/stub-1.md&quot; }
             ]
         },
         {
-            "title": "About",
-            "pages": [
-                { "title": "Stub 1", "src": "pages/stub-1.md" },
-                { "title": "Stub 2", "src": "pages/stub-2.md" }
+            &quot;title&quot;: &quot;About&quot;,
+            &quot;pages&quot;: [
+                { &quot;title&quot;: &quot;Stub 1&quot;, &quot;src&quot;: &quot;pages/stub-1.md&quot; },
+                { &quot;title&quot;: &quot;Stub 2&quot;, &quot;src&quot;: &quot;pages/stub-2.md&quot; }
             ]
         }
     ]
 }
 </code></pre>
-<br><br>
-<h2> Config file parameters</h2>
-<ul><li><strong>target</strong>: this is where do you want the <tt>index.html</tt> file to be generated.</li>
+<h2 id="config-file-parameters">Config file parameters</h2>
+<ul>
+<li><strong>target</strong>: this is where do you want the <code>index.html</code> file to be generated.</li>
 <li><strong>title</strong>: the page title.</li>
 <li><strong>favicon</strong>: If set, use this as a favicon source.</li>
-<li><strong>brand</strong>: page navigation bar brand text. This will be linked to the 'index' page.</li>
+<li><strong>brand</strong>: page navigation bar brand text. This will be linked to the &#39;index&#39; page.</li>
 <li><strong>index</strong>: what markdown page to use for the landing page (brand will link to this page).</li>
-<li><strong>scripts</strong>: this will be added in the 'scripts' section for the page. Note that angular is actually mandatory.</li>
+<li><strong>scripts</strong>: this will be added in the &#39;scripts&#39; section for the page. Note that angular is actually mandatory.</li>
 <li><strong>styles</strong>: same, but for text/css files.</li>
-<li><strong>menu</strong>: this describes the site pages, and allows for some organization. Each entry is considered a 'chapter', and a menu will be generated for each. If a chapter contains more than one page, a page selector will be added to the view.</li>
-</ul><br><br>
+<li><strong>menu</strong>: this describes the site pages, and allows for some organization. Each entry is considered a &#39;chapter&#39;, and a menu will be generated for each. If a chapter contains more than one page, a page selector will be added to the view.</li>
+</ul>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==1">
-<h1> Marksite demo and test page</h1>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==1"><h1 id="marksite-demo-and-test-page">Marksite demo and test page</h1>
 <hr>
-Italic text uses simple asterisks, like: <i>this is italic text on line 1</i>.  <br>
-Bold text uses double asteriks, like: <strong>this is bold text on line 2</strong>.  <br>
-Striked-through text uses markers, like <strike>this is not right on line 3</strike>.  <br>
-Also, monospaced is between double ticks: <tt>this is robot talking on line 4</tt>.  <br>
-This is some <strong>bold text</strong> and <strong>even more bold, with 1234, and (){}_-</strong>.  <br>
-Also, <span class="label label-danger">labels</span> can be used to <span class="label label-danger">really</span> remark something.  <br>
-Links like <a href="http://apycazo.github.io">my sample page</a> are supported.  <br>
-<br><br>
-<h2> Line breaks</h2>
+<p>Italic text uses simple asterisks, like: <em>this is italic text on line 1</em>.<br>Bold text uses double asteriks, like: <strong>this is bold text on line 2</strong>.<br>Striked-through text uses markers, like <del>this is not right on line 3</del>.<br>Also, monospaced is between double ticks: <code>this is robot talking on line 4</code>.<br>This is some <strong>bold text</strong> and <strong>even more bold, with 1234, and (){}_-</strong>.<br>Also, <code>labels</code> can be used to <code>really</code> remark something.<br>Links like <a href="http://apycazo.github.io">my sample page</a> are supported.  </p>
+<h2 id="line-breaks">Line breaks</h2>
 <hr>
-Line breaks are created using two or more spaces.  <br>
-This two lines
-are actually rendered together.  <br>
-<br><br>
-<h2> Code view</h2>
-This is an example of java code highlighting:  <br>
-<pre><code class="java">
-@Test
+<p>Line breaks are created using two or more spaces.<br>This two lines
+are actually rendered together.  </p>
+<h2 id="code-view">Code view</h2>
+<p>This is an example of java code highlighting:  </p>
+<pre><code class="lang-java">@Test
 public void checkSessionType ()
 {
     given()
             // sends auth info without expecting a requirement for it
-            .auth().preemptive().basic("gandalf", "the-grey")
+            .auth().preemptive().basic(&quot;gandalf&quot;, &quot;the-grey&quot;)
             // now the query should go ok
-            .when().get("private/service").then().statusCode(HttpStatus.OK.value());
+            .when().get(&quot;private/service&quot;).then().statusCode(HttpStatus.OK.value());
 
-    when().get("private/service").then().statusCode(HttpStatus.UNAUTHORIZED.value());
+    when().get(&quot;private/service&quot;).then().statusCode(HttpStatus.UNAUTHORIZED.value());
 }
 </code></pre>
-<br><br>
-<h2> Quoting</h2>
+<h2 id="quoting">Quoting</h2>
 <hr>
-This are some quoting examples:  <br>
-<blockquote> This is a one line quote
-</blockquote><br><br>
-This should be left out
-<br><br>
-<blockquote> This is a multiline quote.
-<br> It actually continues!.
-<br> And <strong>by the way</strong>, other markdown <span class="label label-danger">still</span> works!
-</blockquote><br><br>
-<h2> Lists</h2>
+<p>This are some quoting examples:  </p>
+<blockquote>
+<p>This is a one line quote</p>
+</blockquote>
+<p>This should be left out</p>
+<blockquote>
+<p>This is a multiline quote.
+It actually continues!.
+And <strong>by the way</strong>, other markdown <code>still</code> works!</p>
+</blockquote>
+<h2 id="lists">Lists</h2>
 <hr>
-Unordered list:  <br>
-<ul><li>element 1</li>
+<p>Unordered list:  </p>
+<ul>
+<li>element 1</li>
 <li>element 2</li>
 <li>element 3</li>
-</ul><br><br>
-Ordered list:
-<ol><li> element 1</li>
-<li> element 2</li>
-<li> element 3</li>
-</ol><br><br>
-<h2> Lorem ipsum</h2>
+</ul>
+<p>Ordered list:</p>
+<ol>
+<li>element 1</li>
+<li>element 2</li>
+<li>element 3</li>
+</ol>
+<h2 id="lorem-ipsum">Lorem ipsum</h2>
 <hr>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vehicula risus sapien, ut euismod purus gravida id. Nulla ultricies leo odio, ut euismod augue imperdiet vel. Phasellus quam nisi, elementum dignissim ex sed, ornare semper est. Aliquam luctus risus quis sapien semper, eget rutrum leo bibendum. Donec vel mi at urna posuere porta. Nulla tristique pharetra ex at congue. Nunc non vehicula orci. Donec dignissim arcu commodo eros consectetur commodo.
-<br><br>
-<h1> Header L1</h1>
-<h2> Header L2</h2>
-<h3> Header L3</h3>
-<h4> Header L4</h4>
-<br><br>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vehicula risus sapien, ut euismod purus gravida id. Nulla ultricies leo odio, ut euismod augue imperdiet vel. Phasellus quam nisi, elementum dignissim ex sed, ornare semper est. Aliquam luctus risus quis sapien semper, eget rutrum leo bibendum. Donec vel mi at urna posuere porta. Nulla tristique pharetra ex at congue. Nunc non vehicula orci. Donec dignissim arcu commodo eros consectetur commodo.</p>
+<h1 id="header-l1">Header L1</h1>
+<h2 id="header-l2">Header L2</h2>
+<h3 id="header-l3">Header L3</h3>
+<h4 id="header-l4">Header L4</h4>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==0">
-<h1> Amazon VM config</h1>
+<div class="content-selector col-md-3" ng-show="$root.bookmark.chapter==2">
+            <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=0">
+                Java 8-snippets
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=1">
+                Network
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=2">
+                Optional
+            </a></ul>
+        </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==0"><h1 id="java-8-snippets">Java 8 Snippets</h1>
 <hr>
-<h2> Links</h2>
-<a href="http://technotes.khitrenovich.com/opening-ssh-aws-hosted-linux-servers-mremoteng/">MRemoteNG config</a>  <br>
-<a href="https://aws.amazon.com/es/getting-started/tutorials/launch-a-virtual-machine/">Getting started</a>
-<br><br>
-<h2> Login</h2>
-User names seems to include:
-<br><br>
-<ol><li> root</li>
-<li> ec2-user</li>
-<li> ubuntu</li>
-</ol><br><br>
-<h2> Reenable password access</h2>
-<ol><li> Login as root using key pairs</li>
-<li> Create user with  <span class="label label-danger"><tt>sudo adduser USERNAME</tt></span> and set password  <span class="label label-danger"><tt>sudo passwd USERNAME</tt></span></li>
-<li> Edit /etc/ssh/sshd_config setting: <span class="label label-danger"><tt>PasswordAuthentication yes</tt></span></li>
-<li> Restart daemon: <span class="label label-danger"><tt>sudo service sshd restart</tt></span></li>
-</ol><br><br>
-</div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==1">
-<h1> IntelliJ IDEA notes</h1>
-<hr>
-<h2> Plugins</h2>
-<br><br>
-<ul><li>DBNavigator</li>
-<li>Awesome console</li>
-<li>Lombok</li>
-<li>Grep console</li>
-<li>VisualVM Launcher (if https://visualvm.github.io/download.html is installed)</li>
-<li>Quick notes</li>
-</ul><br><br>
-<h2> Settings</h2>
-<br><br>
-Editor ->Code style -> Java
-- Braces placement: next line (class and method declaration)
-<br><br>
-Editor -> Code style -> YAML
-- Indent: 4
-<br><br>
-Editor -> General -> Auto import (Java)
-- Check 'optimize imports on the fly'
-- Check 'Add unambiguous imports on the fly'
-<br><br>
-<h2> Live templates</h2>
-Editor -> Live templates
-Create a new group (for example, 'custom')
-<br><br>
-Sample live template (abbreviation: 't-rest-echo', applicable in 'Java declaration')
-<pre><code class="java">
-@RequestMapping(value = "", method = RequestMethod.GET)
-public ResponseEntity<Map<String,Object>> echo ()
-{
-    Map<String,Object> map = new LinkedHashMap<>();
-    map.put("success", true);
-    map.put("method", "echo");
-    map.put("ts", System.currentTimeMillis());
-    return new ResponseEntity<>(map, HttpStatus.OK);
-}
-</code></pre>
-<br><br>
-<h2> Shortcuts</h2>
-<pre><code>
-| Operation                  | Shortcut                |  
-|----------------------------| ------------------------|  
-| Auto format code           | Ctrl + Alt + L          |  
-| Comment code               | Ctrl + /                |  
-| Open 'find everywhere' tab | Shift x2                |  
-| New line (begin)           | Shift + Enter           |  
-| Duplicate line             | Ctrl + D                |  
-| Remove line                | Ctrl + Y                |  
-| Move line UP               | Ctrl + Shift + UP       |  
-| Move line DOWN             | Ctrl + Shift + DOWN     |  
-| Select custom fold (fcom)  | Ctrl + Alt + .          |  
-| Create test                | Alt + Enter             |  
-| Override/Implement method  | Ctrl + O                |  
-| Custom fold                | (select) Ctrl + Alt + T |  
-| Insert live template       | Ctrl + J                |  
-| Wrap with live template    | Ctrl + Alt + J          |  
-</code></pre>
-<br><br>
-</div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==0">
-<h1> Java 8 Snippets</h1>
-<hr>
-<pre><code class="java">
-import java.util.Comparator;
+<pre><code class="lang-java">import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -391,7 +213,7 @@ import java.util.function.Predicate;
 
 public class J8Reference {
 
-    static String string = "0123456789ABCDEF";
+    static String string = &quot;0123456789ABCDEF&quot;;
 
     static interface Converter {
 
@@ -399,7 +221,7 @@ public class J8Reference {
 
         default String safeConvert(String string)
         {
-            return string == null ? convert("") : convert(string);
+            return string == null ? convert(&quot;&quot;) : convert(string);
         }
     }
 
@@ -407,12 +229,12 @@ public class J8Reference {
 
         String formatA(String string)
         {
-            return String.format("A [%s]", string);
+            return String.format(&quot;A [%s]&quot;, string);
         }
 
         String formatB(String string)
         {
-            return String.format("B [%s]", string);
+            return String.format(&quot;B [%s]&quot;, string);
         }
     }
 
@@ -448,26 +270,26 @@ public class J8Reference {
     public static void testPredicate()
     {
 
-        Predicate<String> p = (x) -> x.length() > 10;
-        System.out.println("Predicate value is " + p.test(string));
+        Predicate&lt;String&gt; p = (x) -&gt; x.length() &gt; 10;
+        System.out.println(&quot;Predicate value is &quot; + p.test(string));
     }
 
     public static void testFunction()
     {
 
-        Function<String, Integer> sizeOf = (x) -> {
+        Function&lt;String, Integer&gt; sizeOf = (x) -&gt; {
             return x == null ? 0 : x.trim().length();
         };
 
-        System.out.println("Length of string is " + sizeOf.apply(string));
-        System.out.println("Length of null string is " + sizeOf.apply(null));
+        System.out.println(&quot;Length of string is &quot; + sizeOf.apply(string));
+        System.out.println(&quot;Length of null string is &quot; + sizeOf.apply(null));
     }
 
     public static void testConsumer()
     {
 
-        Consumer<String> consumer = (x) -> {
-            System.out.println("Value to consume is " + x);
+        Consumer&lt;String&gt; consumer = (x) -&gt; {
+            System.out.println(&quot;Value to consume is &quot; + x);
         };
 
         consumer.accept(string);
@@ -480,8 +302,8 @@ public class J8Reference {
         Converter cA = cm::formatA;
         Converter cB = cm::formatB;
 
-        Consumer<String> c = (x) -> {
-            System.out.println("Consuming string");
+        Consumer&lt;String&gt; c = (x) -&gt; {
+            System.out.println(&quot;Consuming string&quot;);
             System.out.println(cA.safeConvert(x));
             System.out.println(cB.safeConvert(x));
         };
@@ -490,11 +312,11 @@ public class J8Reference {
         c.accept(null);
     }
 
-    private static List<TestSubject> generateSubjects () {
+    private static List&lt;TestSubject&gt; generateSubjects () {
 
-        List<TestSubject> list = new LinkedList<>();
-        for (int i = 0; i < 4; i++) {
-            TestSubject ts = new TestSubject(i, "i=" + i, i*10);
+        List&lt;TestSubject&gt; list = new LinkedList&lt;&gt;();
+        for (int i = 0; i &lt; 4; i++) {
+            TestSubject ts = new TestSubject(i, &quot;i=&quot; + i, i*10);
             list.add(ts);
         }
         return list;
@@ -502,10 +324,10 @@ public class J8Reference {
 
     public static void testSorter()
     {
-        System.out.println("Testing list sorting");
-        List<TestSubject> list = generateSubjects();
-        Consumer<TestSubject> c = (x) -> {
-            System.out.printf("[%d:%s:%d]%n",
+        System.out.println(&quot;Testing list sorting&quot;);
+        List&lt;TestSubject&gt; list = generateSubjects();
+        Consumer&lt;TestSubject&gt; c = (x) -&gt; {
+            System.out.printf(&quot;[%d:%s:%d]%n&quot;,
                     x.intValue,
                     x.stringValue,
                     x.longValue);
@@ -517,15 +339,15 @@ public class J8Reference {
                         .comparing(TestSubject::getIntValue)
                         .reversed()
         );
-        System.out.println("Sorted");
+        System.out.println(&quot;Sorted&quot;);
         list.stream().forEach(c);
     }
 
     public static void testArrayStream()
     {
-        String[] strings = {"a", "b", "c"};
-        Arrays.stream(strings).forEach((x) -> {
-            System.out.println("Value is " + x);
+        String[] strings = {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;};
+        Arrays.stream(strings).forEach((x) -&gt; {
+            System.out.println(&quot;Value is &quot; + x);
         });
     }
 
@@ -533,41 +355,41 @@ public class J8Reference {
     {
 
         // Generate a value list
-        List<TestSubject> list = TestSubject.samples();
+        List&lt;TestSubject&gt; list = TestSubject.samples();
         // Find the test subject with the longest string value
         String s = list.stream()
                 .map(TestSubject::getStringValue)
-                .reduce("", (a, b) -> a.length() >= b.length() ? a : b);
-        System.out.println("Subjects are:");
-        list.stream().forEach((x) -> System.out.println(x.getStringValue()));
-        System.out.println("Longest values is :" + s);
+                .reduce(&quot;&quot;, (a, b) -&gt; a.length() &gt;= b.length() ? a : b);
+        System.out.println(&quot;Subjects are:&quot;);
+        list.stream().forEach((x) -&gt; System.out.println(x.getStringValue()));
+        System.out.println(&quot;Longest values is :&quot; + s);
     }
 
     public static void testSimpleCollect()
     {
         // Generate a value list
-        List<TestSubject> list = TestSubject.samples();
-        List<String> strList = list.stream()
-                .filter(p -> p.getIntValue() < 4)
+        List&lt;TestSubject&gt; list = TestSubject.samples();
+        List&lt;String&gt; strList = list.stream()
+                .filter(p -&gt; p.getIntValue() &lt; 4)
                 .map(TestSubject::getStringValue)
                 .collect(Collectors.toList());
 
-        strList.stream().forEach(p -> System.out.println("Col: " + p));
+        strList.stream().forEach(p -&gt; System.out.println(&quot;Col: &quot; + p));
 
     }
 
     public static void testGroupByCollect()
     {
-        List<TestSubject> list = TestSubject.samples();
-        Map<Long, List<TestSubject>> strList = list
+        List&lt;TestSubject&gt; list = TestSubject.samples();
+        Map&lt;Long, List&lt;TestSubject&gt;&gt; strList = list
                 .stream()
                 .collect(Collectors.groupingBy(TestSubject::getLongValue));
         strList.keySet().stream().forEach(
-                key -> {
-                    System.out.println("K:" + key);
-                    List<TestSubject> entry = strList.get(key);
-                    entry.stream().forEach(v -> {
-                        System.out.println("\tV:" + v.getStringValue());
+                key -&gt; {
+                    System.out.println(&quot;K:&quot; + key);
+                    List&lt;TestSubject&gt; entry = strList.get(key);
+                    entry.stream().forEach(v -&gt; {
+                        System.out.println(&quot;\tV:&quot; + v.getStringValue());
                     });
                 }
         );
@@ -575,61 +397,29 @@ public class J8Reference {
 
     public static void testCollectionToMap()
     {
-        List<TestSubject> list = TestSubject.samples();
+        List&lt;TestSubject&gt; list = TestSubject.samples();
 
-        // Alternate to Function.identity() is p -> p        
-        Map<Integer, TestSubject> map = list
+        // Alternate to Function.identity() is p -&gt; p        
+        Map&lt;Integer, TestSubject&gt; map = list
                 .stream()
                 .collect(Collectors
                         .toMap(TestSubject::getIntValue, Function.identity())
                 );
 
         map.keySet().stream().forEach(
-                key -> {
+                key -&gt; {
                     TestSubject value = map.get(key);
-                    System.out.println(key + ":" + value.getStringValue());
+                    System.out.println(key + &quot;:&quot; + value.getStringValue());
                 }
         );
     }
 
 }
 </code></pre>
-<br><br>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==1">
-<h1> Java 8 Optional</h1>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==1"><h1 id="getting-network-interfaces">Getting network interfaces</h1>
 <hr>
-<pre><code class="java">
-private static void testOptional ()
-{
-    log.info("Testing optional values");
-
-    String str = "string";
-    String emptyStr = "";
-    String nullStr = null;
-
-    String result;
-    result = Optional.ofNullable(nullStr).orElse("str is null");
-    log.info("Result (nullString) = '{}'", result);
-    // Logs: Result (nullString) = 'str is null'
-    result = Optional.ofNullable(emptyStr).orElse("str is null");
-    log.info("Result (emptyString) = '{}'", result);
-    // Logs: Result (emptyString) = ''
-    result = Optional.ofNullable(str).orElse("str is null");
-    log.info("Result (validString) = '{}'", result);
-    // Logs: Result (validString) = 'string'
-    result = Optional.of(emptyStr).orElse("str is null");
-    log.info("Result (emptyString, not nullable) = '{}'", result);
-    // Logs: Result (emptyString, not nullable) = ''
-}
-</code></pre>
-<br><br>
-</div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==2">
-<h1> Getting network interfaces</h1>
-<hr>
-<pre><code class="java">
-import static java.lang.System.out;
+<pre><code class="lang-java">import static java.lang.System.out;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -642,55 +432,90 @@ public class ListNets {
     public void listInterfaces()
     {
         try {
-            Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+            Enumeration&lt;NetworkInterface&gt; nets = NetworkInterface.getNetworkInterfaces();
             for (NetworkInterface netint : Collections.list(nets)) {
                 if (netint.isUp()) {
                     displayInterfaceInformation(netint);
                 }
             }
         } catch (Exception e) {
-            out.println("Captured exception: " + e.getClass().getSimpleName());
+            out.println(&quot;Captured exception: &quot; + e.getClass().getSimpleName());
         }
     }
 
     public void displayInterfaceInformation(NetworkInterface netint) throws SocketException
     {
-        out.printf("Display name: %s\n", netint.getDisplayName());
-        out.printf("Name: %s\n", netint.getName());
-        Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
-        List<InetAddress> list = Collections.list(inetAddresses);
-        list.forEach(addr -> {
-            out.printf("InetAddress: %s\n", addr);
+        out.printf(&quot;Display name: %s\n&quot;, netint.getDisplayName());
+        out.printf(&quot;Name: %s\n&quot;, netint.getName());
+        Enumeration&lt;InetAddress&gt; inetAddresses = netint.getInetAddresses();
+        List&lt;InetAddress&gt; list = Collections.list(inetAddresses);
+        list.forEach(addr -&gt; {
+            out.printf(&quot;InetAddress: %s\n&quot;, addr);
         });
-        out.printf("\n");
+        out.printf(&quot;\n&quot;);
     }
 }
 </code></pre>
-<br><br>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==0">
-<h1> Spring boot context </h1>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==2"><h1 id="java-8-optional">Java 8 Optional</h1>
 <hr>
-<h3> Run after context loads</h3>
-<pre><code class="java">
-@Slf4j
+<pre><code class="lang-java">private static void testOptional ()
+{
+    log.info(&quot;Testing optional values&quot;);
+
+    String str = &quot;string&quot;;
+    String emptyStr = &quot;&quot;;
+    String nullStr = null;
+
+    String result;
+    result = Optional.ofNullable(nullStr).orElse(&quot;str is null&quot;);
+    log.info(&quot;Result (nullString) = &#39;{}&#39;&quot;, result);
+    // Logs: Result (nullString) = &#39;str is null&#39;
+    result = Optional.ofNullable(emptyStr).orElse(&quot;str is null&quot;);
+    log.info(&quot;Result (emptyString) = &#39;{}&#39;&quot;, result);
+    // Logs: Result (emptyString) = &#39;&#39;
+    result = Optional.ofNullable(str).orElse(&quot;str is null&quot;);
+    log.info(&quot;Result (validString) = &#39;{}&#39;&quot;, result);
+    // Logs: Result (validString) = &#39;string&#39;
+    result = Optional.of(emptyStr).orElse(&quot;str is null&quot;);
+    log.info(&quot;Result (emptyString, not nullable) = &#39;{}&#39;&quot;, result);
+    // Logs: Result (emptyString, not nullable) = &#39;&#39;
+}
+</code></pre>
+</div>
+<div class="content-selector col-md-3" ng-show="$root.bookmark.chapter==3">
+            <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=0">
+                Spring boot-context
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=1">
+                Configuration properties
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=2">
+                Resource handling
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==3}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=3">
+                Jackson parser
+            </a></ul>
+        </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==0"><h1 id="spring-boot-context">Spring boot context</h1>
+<hr>
+<h3 id="run-after-context-loads">Run after context loads</h3>
+<pre><code class="lang-java">@Slf4j
 @Component
-public class AfterContextLoads implements ApplicationListener<ContextRefreshedEvent> {
+public class AfterContextLoads implements ApplicationListener&lt;ContextRefreshedEvent&gt; {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event)
     {
-        log.info("--- READY ---");
+        log.info(&quot;--- READY ---&quot;);
         // just so a report can be logger after startup.
     }
 }
 </code></pre>
-<br><br>
-<h3> Test URL after context loads</h3>
-<pre><code class="java">
-@Slf4j
+<h3 id="test-url-after-context-loads">Test URL after context loads</h3>
+<pre><code class="lang-java">@Slf4j
 @Component
-public class SetupTest implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
+public class SetupTest implements ApplicationListener&lt;EmbeddedServletContainerInitializedEvent&gt; {
 
     @Autowired
     private ServletContext servletContext;
@@ -699,79 +524,68 @@ public class SetupTest implements ApplicationListener<EmbeddedServletContainerIn
     public void onApplicationEvent(EmbeddedServletContainerInitializedEvent event)
     {
         // Base url
-        String base = "http://127.0.0.1";
+        String base = &quot;http://127.0.0.1&quot;;
         int port = event.getEmbeddedServletContainer().getPort();
         String contextPath = servletContext.getContextPath();
-        String url = base + ":" + port + contextPath + "/echo-test";
+        String url = base + &quot;:&quot; + port + contextPath + &quot;/echo-test&quot;;
 
         RestTemplate rest = new RestTemplate();
         try {            
             URI uri = new URI(url);
-            ResponseEntity<String> response = rest.getForEntity(uri, String.class);
-            log.info("Echo test on {}", uri.toString());
-            log.info("Check response... {}", (response == null ? "KO" : "OK"));
+            ResponseEntity&lt;String&gt; response = rest.getForEntity(uri, String.class);
+            log.info(&quot;Echo test on {}&quot;, uri.toString());
+            log.info(&quot;Check response... {}&quot;, (response == null ? &quot;KO&quot; : &quot;OK&quot;));
             if (response != null) {
-                log.info("Check status...   {}",
-                        (response.getStatusCode() != HttpStatus.OK ? "KO" : "OK"));
-                log.info("Check body...     {}",
-                        (response.getBody() == null || response.getBody().isEmpty() ? "KO" : "OK"));
+                log.info(&quot;Check status...   {}&quot;,
+                        (response.getStatusCode() != HttpStatus.OK ? &quot;KO&quot; : &quot;OK&quot;));
+                log.info(&quot;Check body...     {}&quot;,
+                        (response.getBody() == null || response.getBody().isEmpty() ? &quot;KO&quot; : &quot;OK&quot;));
             }
         } catch (URISyntaxException | RestClientException e) {
-            log.warn("Unable to generate test query url {}", url, e);
+            log.warn(&quot;Unable to generate test query url {}&quot;, url, e);
         }
     }
 }
 </code></pre>
-<br><br>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==1">
-<h1> Configuration properties</h1>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==1"><h1 id="configuration-properties">Configuration properties</h1>
 <hr>
-<h3> Add properties without annotations</h3>
-<pre><code class="java">
-@Bean
+<h3 id="add-properties-without-annotations">Add properties without annotations</h3>
+<pre><code class="lang-java">@Bean
 public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
     PropertySourcesPlaceholderConfigurer propertyConfigurer = new PropertySourcesPlaceholderConfigurer();
-    propertyConfigurer.setLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/**/abc.properties"));
+    propertyConfigurer.setLocations(new PathMatchingResourcePatternResolver().getResources(&quot;classpath:/**/abc.properties&quot;));
     return propertyConfigurer;
 }
-
 </code></pre>
-<h3> Validate ConfigProperties fields</h3>
-<pre><code class="java">
-@NotNull
-@Pattern(regexp = "\\w+", message = "ID must only contains letters, numbers and '_'")
+<h3 id="validate-configproperties-fields">Validate ConfigProperties fields</h3>
+<pre><code class="lang-java">@NotNull
+@Pattern(regexp = &quot;\\w+&quot;, message = &quot;ID must only contains letters, numbers and &#39;_&#39;&quot;)
 private String id;
 </code></pre>
-<br><br>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==2">
-<h1> Resources</h1>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==2"><h1 id="resources">Resources</h1>
 <hr>
-<h3> Add path handlers</h3>
-<pre><code class="java">
-@Configuration
+<h3 id="add-path-handlers">Add path handlers</h3>
+<pre><code class="lang-java">@Configuration
 @EnableWebMvc
 public class WebResourceConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/static/**/*")                
+                .addResourceHandler(&quot;/static/**/*&quot;)                
                 .addResourceLocations(
-                        "/resources/static/test",
-                        "/resources/static/common"
+                        &quot;/resources/static/test&quot;,
+                        &quot;/resources/static/common&quot;
                 );
     }
 }
 </code></pre>
-<br><br>
 </div>
-<div class="content-viewport col-md-9" ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==3">
-<h1> Jackson json ignore</h1>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==3"><h1 id="jackson-json-ignore">Jackson json ignore</h1>
 <hr>
-<pre><code class="java">
-@JsonPropertyOrder({ "id", "firstname", "lastname" })
+<pre><code class="lang-java">@JsonPropertyOrder({ &quot;id&quot;, &quot;firstname&quot;, &quot;lastname&quot; })
 @JsonInclude(Include.NON_EMPTY)
 public class User {
     private Long id;
@@ -779,15 +593,205 @@ public class User {
     private String lastname;
 }
 </code></pre>
-<br><br>
 </div>
-<!--:content-->
-            </div>
+<div class="content-selector col-md-3" ng-show="$root.bookmark.chapter==4">
+            <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=0">
+                Settings
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=1">
+                External properties
+            </a></ul>
         </div>
-        <!-- Footer -->
-        <div class="footer">
-            <p>Built with <a href="https://github.com/apycazo/marksite">Marksite</a></p>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==0"><h1 id="maven-settings-example">Maven settings example</h1>
+<hr>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+    &lt;localRepository&gt;${user.home}/.m2/repository&lt;/localRepository&gt;
+    &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
+    &lt;usePluginRegistry&gt;false&lt;/usePluginRegistry&gt;
+    &lt;offline&gt;false&lt;/offline&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;id&gt;demo-server&lt;/id&gt;
+            &lt;username&gt;root&lt;/username&gt;
+            &lt;password&gt;root&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+    &lt;mirrors /&gt;
+    &lt;proxies&gt;
+        &lt;proxy&gt;
+            &lt;id&gt;optional&lt;/id&gt;
+            &lt;active&gt;true&lt;/active&gt;
+            &lt;protocol&gt;http&lt;/protocol&gt;
+            &lt;!--
+            &lt;username&gt;optional-proxyuser&lt;/username&gt;
+            &lt;password&gt;optional-proxypass&lt;/password&gt;
+            --&gt;
+            &lt;host&gt;proxy.safezone.com&lt;/host&gt;
+            &lt;port&gt;8000&lt;/port&gt;
+            &lt;nonProxyHosts&gt;localhost | 127.0.0.1&lt;/nonProxyHosts&gt;
+        &lt;/proxy&gt;
+    &lt;/proxies&gt;
+&lt;/settings&gt;
+</code></pre>
+</div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==1"><h1 id="maven-external-properties">Maven external properties</h1>
+<hr>
+<pre><code class="lang-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;properties-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;${properties.maven.plugin.version}&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;phase&gt;initialize&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;read-project-properties&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;files&gt;
+                    &lt;file&gt;src/main/${env}/config-${env}.properties&lt;/file&gt;
+                &lt;/files&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+</div>
+<div class="content-selector col-md-3" ng-show="$root.bookmark.chapter==5">
+            <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=5; $root.bookmark.page=0">
+                Amazon AWS
+            </a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=5; $root.bookmark.page=1">
+                Intellij IDEA
+            </a></ul>
         </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==5 && $root.bookmark.page==0"><h1 id="amazon-vm-config">Amazon VM config</h1>
+<hr>
+<h2 id="links">Links</h2>
+<p><a href="http://technotes.khitrenovich.com/opening-ssh-aws-hosted-linux-servers-mremoteng/">MRemoteNG config</a><br><a href="https://aws.amazon.com/es/getting-started/tutorials/launch-a-virtual-machine/">Getting started</a></p>
+<h2 id="login">Login</h2>
+<p>User names seems to include:</p>
+<ol>
+<li>root</li>
+<li>ec2-user</li>
+<li>ubuntu</li>
+</ol>
+<h2 id="reenable-password-access">Reenable password access</h2>
+<ol>
+<li>Login as root using key pairs</li>
+<li>Create user with  <code>sudo adduser USERNAME</code> and set password  <code>sudo passwd USERNAME</code></li>
+<li>Edit /etc/ssh/sshd_config setting: <code>PasswordAuthentication yes</code></li>
+<li>Restart daemon: <code>sudo service sshd restart</code></li>
+</ol>
+</div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==5 && $root.bookmark.page==1"><h1 id="intellij-idea-notes">IntelliJ IDEA notes</h1>
+<hr>
+<h2 id="plugins">Plugins</h2>
+<ul>
+<li>DBNavigator</li>
+<li>Awesome console</li>
+<li>Lombok</li>
+<li>Grep console</li>
+<li>VisualVM Launcher (if <a href="https://visualvm.github.io/download.html">https://visualvm.github.io/download.html</a> is installed)</li>
+<li>Quick notes</li>
+</ul>
+<h2 id="settings">Settings</h2>
+<p>Editor -&gt;Code style -&gt; Java</p>
+<ul>
+<li>Braces placement: next line (class and method declaration)</li>
+</ul>
+<p>Editor -&gt; Code style -&gt; YAML</p>
+<ul>
+<li>Indent: 4</li>
+</ul>
+<p>Editor -&gt; General -&gt; Auto import (Java)</p>
+<ul>
+<li>Check &#39;optimize imports on the fly&#39;</li>
+<li>Check &#39;Add unambiguous imports on the fly&#39;</li>
+</ul>
+<h2 id="live-templates">Live templates</h2>
+<p>Editor -&gt; Live templates
+Create a new group (for example, &#39;custom&#39;)</p>
+<p>Sample live template (abbreviation: &#39;t-rest-echo&#39;, applicable in &#39;Java declaration&#39;)</p>
+<pre><code class="lang-java">@RequestMapping(value = &quot;&quot;, method = RequestMethod.GET)
+public ResponseEntity&lt;Map&lt;String,Object&gt;&gt; echo ()
+{
+    Map&lt;String,Object&gt; map = new LinkedHashMap&lt;&gt;();
+    map.put(&quot;success&quot;, true);
+    map.put(&quot;method&quot;, &quot;echo&quot;);
+    map.put(&quot;ts&quot;, System.currentTimeMillis());
+    return new ResponseEntity&lt;&gt;(map, HttpStatus.OK);
+}
+</code></pre>
+<h2 id="shortcuts">Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auto format code</td>
+<td>Ctrl + Alt + L</td>
+</tr>
+<tr>
+<td>Comment code</td>
+<td>Ctrl + /</td>
+</tr>
+<tr>
+<td>Open &#39;find everywhere&#39; tab</td>
+<td>Shift x2</td>
+</tr>
+<tr>
+<td>New line (begin)</td>
+<td>Shift + Enter</td>
+</tr>
+<tr>
+<td>Duplicate line</td>
+<td>Ctrl + D</td>
+</tr>
+<tr>
+<td>Remove line</td>
+<td>Ctrl + Y</td>
+</tr>
+<tr>
+<td>Move line UP</td>
+<td>Ctrl + Shift + UP</td>
+</tr>
+<tr>
+<td>Move line DOWN</td>
+<td>Ctrl + Shift + DOWN</td>
+</tr>
+<tr>
+<td>Select custom fold (fcom)</td>
+<td>Ctrl + Alt + .</td>
+</tr>
+<tr>
+<td>Create test</td>
+<td>Alt + Enter</td>
+</tr>
+<tr>
+<td>Override/Implement method</td>
+<td>Ctrl + O</td>
+</tr>
+<tr>
+<td>Custom fold</td>
+<td>(select) Ctrl + Alt + T</td>
+</tr>
+<tr>
+<td>Insert live template</td>
+<td>Ctrl + J</td>
+</tr>
+<tr>
+<td>Wrap with live template</td>
+<td>Ctrl + Alt + J</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+        <div class="footer"><p>Built with <a href="https://github.com/apycazo/marksite">Marksite</a></p></div>
     </div>
 </body>
 </html>
