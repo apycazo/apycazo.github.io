@@ -11,32 +11,28 @@
     .content-selector { text-align: center; padding-top: 20px; }
     .marksite code { padding: 4px 4px; }
     .marksite pre { padding: 0px; }
+    .marksite hr { border-top: 1px solid #ffffff; }
     .footer { background-color: #697075; min-height: 50px; line-height: 50px; text-align: center; margin-top:25px }
     th, td { padding: 5px; border:1px solid black; }
 </style>
-
 <script>
     hljs.initHighlightingOnLoad();
-    angular.module('marksite',[]).controller('marksite-controller', ['$rootScope','$scope', function ($root, $scope) {
+    angular.module("marksite",[]).controller("marksite-controller", ["$rootScope","$scope", function ($root, $scope) {
         $root.bookmark = { chapter: 0, page: 0 };
     }]);
 </script>
-
 </head>
 <body ng-app="marksite" class="marksite">
     <div ng-controller="marksite-controller">
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#marksite-navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle nav</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="https://github.com/apycazo?tab=repositories">Andrew's GitHub</a>
                 </div>
-                <div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="#" ng-click="$root.bookmark.chapter=0;$root.bookmark.page=0">Home</a></li>
+                <div class="collapse navbar-collapse" id="marksite-navbar"><ul class="nav navbar-nav"><li><a href="#" ng-click="$root.bookmark.chapter=0;$root.bookmark.page=0">Home</a></li>
 <li><a href="#" ng-click="$root.bookmark.chapter=1;$root.bookmark.page=0">Marksite</a></li>
 <li><a href="#" ng-click="$root.bookmark.chapter=2;$root.bookmark.page=0">Java</a></li>
 <li><a href="#" ng-click="$root.bookmark.chapter=3;$root.bookmark.page=0">Spring Boot</a></li>
@@ -77,12 +73,9 @@ a markdown to html site generator.</p>
 </div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==1">
             <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=0">
-                Config
-            </a>
+                Config</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=1; $root.bookmark.page=1">
-                Demo
-            </a></ul>
-        </div>
+                Demo</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==1 && $root.bookmark.page==0"><h1 id="configuring-marksite">Configuring marksite</h1>
 <hr>
 <h2 id="base-config">Base config</h2>
@@ -193,15 +186,11 @@ And <strong>by the way</strong>, other markdown <code>still</code> works!</p>
 </div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==2">
             <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=0">
-                Java 8-snippets
-            </a>
+                Java 8 snippets</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=1">
-                Network
-            </a>
+                Network</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=2">
-                Optional
-            </a></ul>
-        </div>
+                Optional</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==0"><h1 id="java-8-snippets">Java 8 Snippets</h1>
 <hr>
 <pre><code class="lang-java">import java.util.Comparator;
@@ -485,18 +474,15 @@ public class ListNets {
 </div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==3">
             <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=0">
-                Spring boot-context
-            </a>
+                Spring boot context</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=1">
-                Configuration properties
-            </a>
+                Configuration properties</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=2">
-                Resource handling
-            </a>
+                Resource handling</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==3}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=3">
-                Jackson parser
-            </a></ul>
-        </div>
+                Jackson parser</a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==4}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=4">
+                Rest gateway</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==0"><h1 id="spring-boot-context">Spring boot context</h1>
 <hr>
 <h3 id="run-after-context-loads">Run after context loads</h3>
@@ -594,14 +580,158 @@ public class User {
 }
 </code></pre>
 </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==4"><h1 id="rest-gateway">Rest gateway</h1>
+<hr>
+<p>A simple implementation of a rest service. It just collects and publishes services inside an API.
+This reference requires updates from latest Spring Boot version.</p>
+<h2 id="gateway">Gateway</h2>
+<pre><code class="lang-java">@Slf4j
+@RestController
+@RequestMapping(value = &quot;gateway&quot;)
+public class Gateway
+{
+    @Autowired(required = false)
+    protected GatewayService[] services;
+    protected Map&lt;String, GatewayService&gt; serviceMap;
+    protected final ObjectMapper mapper;
+
+    // JSONP support
+    @ControllerAdvice
+    protected static class JsonpAdvice extends AbstractJsonpResponseBodyAdvice
+    {
+        public JsonpAdvice()
+        {
+            super(&quot;callback&quot;);
+            log.info(
+                    &quot;{} has JSONP support enabled&quot;,
+                    Gateway.class.getSimpleName());
+        }
+    }
+
+    public Gateway()
+    {
+        mapper = new ObjectMapper();
+        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+    }
+
+    protected String jsonStringError(String msg, HttpStatus status, Exception ex)
+    {
+        Map&lt;String, Object&gt; map = new LinkedHashMap&lt;&gt;();
+        map.put(&quot;success&quot;, Boolean.FALSE);
+        map.put(&quot;httpStatus&quot;, status.name());
+        map.put(&quot;timestamp&quot;, System.currentTimeMillis());
+        map.put(&quot;message&quot;, msg);
+        if (ex != null) {
+            map.put(&quot;isException&quot;, Boolean.TRUE);
+            map.put(&quot;exceptionName&quot;, ex.getClass().getSimpleName());
+            try {
+                StackTraceElement stackTop = ex.getStackTrace()[0];
+                map.put(&quot;methodName&quot;, stackTop.getMethodName());
+                map.put(&quot;methodLine&quot;, stackTop.getLineNumber());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // Does not include stack
+            }
+        }
+        try {
+            return mapper.writeValueAsString(map);
+        } catch (Exception e) {
+            return &quot;{\&quot;success\&quot;:false}&quot;;
+        }
+    }
+
+    @PostConstruct
+    protected void setup()
+    {
+        serviceMap = new HashMap&lt;&gt;();
+        if (services == null) {
+            log.info(&quot;Gateway service has no actual services&quot;);
+            services = new GatewayService[0];
+        } else {
+            for (GatewayService service : services) {
+                String serviceName = service.getServiceName();
+                serviceMap.put(serviceName, service);
+                log.info(&quot;Registered gateway service &#39;{}&#39;&quot;, serviceName);
+            }
+        }
+    }
+
+    @RequestMapping(method = GET)
+    public Map&lt;String, Map&lt;String, String&gt;&gt; serviceNames(HttpServletRequest request) throws MalformedURLException
+    {
+        Map&lt;String, Map&lt;String, String&gt;&gt; response = new LinkedHashMap&lt;&gt;();
+
+        String urlString = request.getRequestURL().toString();
+        if (false == urlString.endsWith(&quot;/&quot;)) urlString += &quot;/&quot;;
+        URL baseURL = new URL(urlString);
+
+        serviceMap.keySet().stream().forEach(
+                (e) -&gt; {
+                    Map&lt;String, String&gt; info = new LinkedHashMap&lt;&gt;();
+                    try {
+                        URL url = new URL(baseURL, e);
+                        info.put(&quot;href&quot;, url.toString());
+                    } catch (MalformedURLException ex) {
+                        info.put(&quot;href&quot;, &quot;&quot;);
+                        info.put(&quot;ex&quot;, ex.getClass().getSimpleName());
+                    } finally {
+                        response.put(e, info);
+                    }
+                }
+        );
+
+        return response;
+    }
+
+    @RequestMapping(
+            method = GET,
+            value = &quot;{serviceName}&quot;,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAsJson(
+            HttpServletRequest request,
+            @RequestBody(required = false) Optional&lt;String&gt; body,
+            @PathVariable String serviceName)
+    {
+        // fetch service
+        GatewayService service = serviceMap.get(serviceName);
+        // Make sure body is not null, even if its empty
+        body = body != null ? body : Optional.empty();
+        if (service == null) {
+            String msg = &quot;Service &quot; + serviceName + &quot; does not exist.&quot;;
+            HttpStatus status = HttpStatus.BAD_REQUEST;
+            String error = jsonStringError(msg, status, null);
+            return new ResponseEntity(error, status);
+        }
+        // Run service process
+        Object result = service.processRequest(request, body);
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
+}
+</code></pre>
+<h2 id="gateway-service">Gateway service</h2>
+<pre><code class="lang-java">public interface GatewayService
+{
+    String getServiceName();
+    default String getServiceVersion()
+    {
+        return &quot;SNAPSHOT&quot;;
+    }
+
+    default HttpMethod [] getOptions ()
+    {
+        return new HttpMethod [] { HttpMethod.OPTIONS, HttpMethod.GET };
+    }
+
+    Object processRequest(HttpServletRequest request, Optional&lt;String&gt; body);
+}
+</code></pre>
+</div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==4">
             <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=0">
-                Settings
-            </a>
+                Settings example</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=1">
-                External properties
-            </a></ul>
-        </div>
+                External properties</a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=2">
+                Repository configuration</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==0"><h1 id="maven-settings-example">Maven settings example</h1>
 <hr>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -657,14 +787,30 @@ public class User {
 &lt;/plugin&gt;
 </code></pre>
 </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==2"><h1 id="distribution-management-config">Distribution management config</h1>
+<hr>
+<pre><code class="lang-xml">&lt;distributionManagement&gt;
+    &lt;repository&gt;
+        &lt;id&gt;test-repo&lt;/id&gt;
+        &lt;name&gt;test-repo&lt;/name&gt;
+        &lt;url&gt;http://127.0.0.1:8000/repository/&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/distributionManagement&gt;
+</code></pre>
+<h1 id="local-repository">Local repository</h1>
+<hr>
+<pre><code class="lang-xml">&lt;repository&gt;
+    &lt;id&gt;localrepo&lt;/id&gt;
+    &lt;name&gt;localrepo&lt;/name&gt;
+    &lt;url&gt;file://${basedir}/deps&lt;/url&gt;
+&lt;/repository&gt;
+</code></pre>
+</div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==5">
             <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=5; $root.bookmark.page=0">
-                Amazon AWS
-            </a>
+                Amazon AWS</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=5; $root.bookmark.page=1">
-                Intellij IDEA
-            </a></ul>
-        </div>
+                Intellij IDEA</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==5 && $root.bookmark.page==0"><h1 id="amazon-vm-config">Amazon VM config</h1>
 <hr>
 <h2 id="links">Links</h2>
@@ -686,43 +832,6 @@ public class User {
 </div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==5 && $root.bookmark.page==1"><h1 id="intellij-idea-notes">IntelliJ IDEA notes</h1>
 <hr>
-<h2 id="plugins">Plugins</h2>
-<ul>
-<li>DBNavigator</li>
-<li>Awesome console</li>
-<li>Lombok</li>
-<li>Grep console</li>
-<li>VisualVM Launcher (if <a href="https://visualvm.github.io/download.html">https://visualvm.github.io/download.html</a> is installed)</li>
-<li>Quick notes</li>
-</ul>
-<h2 id="settings">Settings</h2>
-<p>Editor -&gt;Code style -&gt; Java</p>
-<ul>
-<li>Braces placement: next line (class and method declaration)</li>
-</ul>
-<p>Editor -&gt; Code style -&gt; YAML</p>
-<ul>
-<li>Indent: 4</li>
-</ul>
-<p>Editor -&gt; General -&gt; Auto import (Java)</p>
-<ul>
-<li>Check &#39;optimize imports on the fly&#39;</li>
-<li>Check &#39;Add unambiguous imports on the fly&#39;</li>
-</ul>
-<h2 id="live-templates">Live templates</h2>
-<p>Editor -&gt; Live templates
-Create a new group (for example, &#39;custom&#39;)</p>
-<p>Sample live template (abbreviation: &#39;t-rest-echo&#39;, applicable in &#39;Java declaration&#39;)</p>
-<pre><code class="lang-java">@RequestMapping(value = &quot;&quot;, method = RequestMethod.GET)
-public ResponseEntity&lt;Map&lt;String,Object&gt;&gt; echo ()
-{
-    Map&lt;String,Object&gt; map = new LinkedHashMap&lt;&gt;();
-    map.put(&quot;success&quot;, true);
-    map.put(&quot;method&quot;, &quot;echo&quot;);
-    map.put(&quot;ts&quot;, System.currentTimeMillis());
-    return new ResponseEntity&lt;&gt;(map, HttpStatus.OK);
-}
-</code></pre>
 <h2 id="shortcuts">Shortcuts</h2>
 <table>
 <thead>
@@ -790,6 +899,43 @@ public ResponseEntity&lt;Map&lt;String,Object&gt;&gt; echo ()
 </tr>
 </tbody>
 </table>
+<h2 id="plugins">Plugins</h2>
+<ul>
+<li>DBNavigator</li>
+<li>Awesome console</li>
+<li>Lombok</li>
+<li>Grep console</li>
+<li>VisualVM Launcher (if <a href="https://visualvm.github.io/download.html">https://visualvm.github.io/download.html</a> is installed)</li>
+<li>Quick notes</li>
+</ul>
+<h2 id="settings">Settings</h2>
+<p>Editor -&gt;Code style -&gt; Java</p>
+<ul>
+<li>Braces placement: next line (class and method declaration)</li>
+</ul>
+<p>Editor -&gt; Code style -&gt; YAML</p>
+<ul>
+<li>Indent: 4</li>
+</ul>
+<p>Editor -&gt; General -&gt; Auto import (Java)</p>
+<ul>
+<li>Check &#39;optimize imports on the fly&#39;</li>
+<li>Check &#39;Add unambiguous imports on the fly&#39;</li>
+</ul>
+<h2 id="live-templates">Live templates</h2>
+<p>Editor -&gt; Live templates
+Create a new group (for example, &#39;custom&#39;)</p>
+<p>Sample live template (abbreviation: &#39;t-rest-echo&#39;, applicable in &#39;Java declaration&#39;)</p>
+<pre><code class="lang-java">@RequestMapping(value = &quot;&quot;, method = RequestMethod.GET)
+public ResponseEntity&lt;Map&lt;String,Object&gt;&gt; echo ()
+{
+    Map&lt;String,Object&gt; map = new LinkedHashMap&lt;&gt;();
+    map.put(&quot;success&quot;, true);
+    map.put(&quot;method&quot;, &quot;echo&quot;);
+    map.put(&quot;ts&quot;, System.currentTimeMillis());
+    return new ResponseEntity&lt;&gt;(map, HttpStatus.OK);
+}
+</code></pre>
 </div></div>
         <div class="footer"><p>Built with <a href="https://github.com/apycazo/marksite">Marksite</a></p></div>
     </div>

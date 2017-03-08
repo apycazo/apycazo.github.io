@@ -1,10 +1,10 @@
 {
     "title": "GitHub site [Andres Picazo]",
-    "template": "default-template.html",
-    "target": "../apycazo.github.io/index.html",
+    "target": "index.html",
     "brand": "Andrew's GitHub",
     "home": "https://github.com/apycazo?tab=repositories",
     "favicon": "https://icons.better-idea.org/icon?size=80..120..200&url=github.com",
+    "source": "./sources/",
     "scripts": [
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js",
         "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js",
@@ -16,29 +16,31 @@
         "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"
     ],
     "chapters": {
-        "Home": ["../apycazo.github.io/sources/landing.md"],
+        "Home": ["landing.md"],
         "Marksite": [
-            "../apycazo.github.io/sources/marksite/config.md",
-            "../apycazo.github.io/sources/marksite/demo.md"
+            "marksite/config.md",
+            "marksite/demo.md"
         ],
         "Java": [
-            "../apycazo.github.io/sources/java/java-8-snippets.md",
-            "../apycazo.github.io/sources/java/network.md",
-            "../apycazo.github.io/sources/java/optional.md"
+            "java/java-8-snippets.md",
+            "java/network.md",
+            "java/optional.md"
         ],
         "Spring Boot": [
-            "../apycazo.github.io/sources/boot/spring-boot-context.md",
-            "../apycazo.github.io/sources/boot/configuration-properties.md",
-            "../apycazo.github.io/sources/boot/resource-handling.md",
-            "../apycazo.github.io/sources/boot/jackson-parser.md"
+            "boot/spring-boot-context.md",
+            "boot/configuration-properties.md",
+            "boot/resource-handling.md",
+            "boot/jackson-parser.md",
+            "boot/rest-gateway.md"
         ],
         "Maven": [
-            "../apycazo.github.io/sources/maven/settings.md",
-            "../apycazo.github.io/sources/maven/external-properties.md"
+            "maven/settings-example.md",
+            "maven/external-properties.md",
+            "maven/repository-configuration.md"
         ],
         "Applications": [
-            "../apycazo.github.io/sources/apps/amazon-AWS.md",
-            "../apycazo.github.io/sources/apps/intellij-IDEA.md"
+            "apps/amazon-AWS.md",
+            "apps/intellij-IDEA.md"
         ]
     }
 }

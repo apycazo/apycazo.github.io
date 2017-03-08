@@ -1,5 +1,24 @@
 # IntelliJ IDEA notes
 ---
+## Shortcuts
+
+| Operation                  | Shortcut                |  
+|----------------------------| ------------------------|  
+| Auto format code           | Ctrl + Alt + L          |  
+| Comment code               | Ctrl + /                |  
+| Open 'find everywhere' tab | Shift x2                |  
+| New line (begin)           | Shift + Enter           |  
+| Duplicate line             | Ctrl + D                |  
+| Remove line                | Ctrl + Y                |  
+| Move line UP               | Ctrl + Shift + UP       |  
+| Move line DOWN             | Ctrl + Shift + DOWN     |  
+| Select custom fold (fcom)  | Ctrl + Alt + .          |  
+| Create test                | Alt + Enter             |  
+| Override/Implement method  | Ctrl + O                |  
+| Custom fold                | (select) Ctrl + Alt + T |  
+| Insert live template       | Ctrl + J                |  
+| Wrap with live template    | Ctrl + Alt + J          |  
+
 ## Plugins
 
 * DBNavigator
@@ -37,22 +56,3 @@ public ResponseEntity<Map<String,Object>> echo ()
     return new ResponseEntity<>(map, HttpStatus.OK);
 }
 ```
-
-## Shortcuts
-
-| Operation                  | Shortcut                |  
-|----------------------------| ------------------------|  
-| Auto format code           | Ctrl + Alt + L          |  
-| Comment code               | Ctrl + /                |  
-| Open 'find everywhere' tab | Shift x2                |  
-| New line (begin)           | Shift + Enter           |  
-| Duplicate line             | Ctrl + D                |  
-| Remove line                | Ctrl + Y                |  
-| Move line UP               | Ctrl + Shift + UP       |  
-| Move line DOWN             | Ctrl + Shift + DOWN     |  
-| Select custom fold (fcom)  | Ctrl + Alt + .          |  
-| Create test                | Alt + Enter             |  
-| Override/Implement method  | Ctrl + O                |  
-| Custom fold                | (select) Ctrl + Alt + T |  
-| Insert live template       | Ctrl + J                |  
-| Wrap with live template    | Ctrl + Alt + J          |  
