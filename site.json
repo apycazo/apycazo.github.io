@@ -21,17 +21,16 @@
             "marksite/config.md",
             "marksite/demo.md"
         ],
-        "Java": [
+        "Java | Spring": [
             "java/java-8-snippets.md",
             "java/network.md",
-            "java/optional.md"
-        ],
-        "Spring Boot": [
-            "boot/spring-boot-context.md",
-            "boot/configuration-properties.md",
-            "boot/resource-handling.md",
-            "boot/jackson-parser.md",
-            "boot/rest-gateway.md"
+            "java/jetty.md",
+            "java/spring-boot-context.md",
+            "java/spring-mvc.md",
+            "java/configuration-properties.md",
+            "java/resource-handling.md",
+            "java/jackson-parser.md",
+            "java/rest-gateway.md"
         ],
         "Maven": [
             "maven/settings-example.md",
@@ -40,7 +39,10 @@
         ],
         "Applications": [
             "apps/amazon-AWS.md",
-            "apps/intellij-IDEA.md"
+            "apps/intellij-IDEA.md",
+            "apps/git.md",
+            "apps/linux.md",
+            "apps/mysql-cluster.md"
         ]
     }
 }

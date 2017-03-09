@@ -1,5 +1,33 @@
-# Java 8 Snippets
+# Java 8
 ---
+
+## Java optional
+```java
+private static void testOptional ()
+{
+    log.info("Testing optional values");
+
+    String str = "string";
+    String emptyStr = "";
+    String nullStr = null;
+
+    String result;
+    result = Optional.ofNullable(nullStr).orElse("str is null");
+    log.info("Result (nullString) = '{}'", result);
+    // Logs: Result (nullString) = 'str is null'
+    result = Optional.ofNullable(emptyStr).orElse("str is null");
+    log.info("Result (emptyString) = '{}'", result);
+    // Logs: Result (emptyString) = ''
+    result = Optional.ofNullable(str).orElse("str is null");
+    log.info("Result (validString) = '{}'", result);
+    // Logs: Result (validString) = 'string'
+    result = Optional.of(emptyStr).orElse("str is null");
+    log.info("Result (emptyString, not nullable) = '{}'", result);
+    // Logs: Result (emptyString, not nullable) = ''
+}
+```
+
+## Lambda expressions and stream API
 ```java
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -178,11 +206,8 @@ public class J8Reference {
     public static void testGroupByCollect()
     {
         List<TestSubject> list = TestSubject.samples();
-        Map<Long, List<TestSubject>> strList = list
-                .stream()
-                .collect(Collectors.groupingBy(TestSubject::getLongValue));
-        strList.keySet().stream().forEach(
-                key -> {
+        Map<Long, List<TestSubject>> strList = list.stream().collect(Collectors.groupingBy(TestSubject::getLongValue));
+        strList.keySet().stream().forEach(key -> {
                     System.out.println("K:" + key);
                     List<TestSubject> entry = strList.get(key);
                     entry.stream().forEach(v -> {
@@ -197,14 +222,9 @@ public class J8Reference {
         List<TestSubject> list = TestSubject.samples();
 
         // Alternate to Function.identity() is p -> p        
-        Map<Integer, TestSubject> map = list
-                .stream()
-                .collect(Collectors
-                        .toMap(TestSubject::getIntValue, Function.identity())
-                );
+        Map<Integer, TestSubject> map = list.stream().collect(Collectors.toMap(TestSubject::getIntValue, Function.identity()));
 
-        map.keySet().stream().forEach(
-                key -> {
+        map.keySet().stream().forEach(key -> {
                     TestSubject value = map.get(key);
                     System.out.println(key + ":" + value.getStringValue());
                 }

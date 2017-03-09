@@ -8,11 +8,12 @@ the actual path, for example: `node marksite.js test-config.js`.
 An example for a config file looks like this:
 ```javascript
 {
-    "target": "./index.html",
-    "title": "Andres Picazo -- GitHub site",
+    "title": "GitHub site [Andres Picazo]",
+    "target": "index.html",
+    "brand": "Andrew's GitHub",
+    "home": "https://github.com/apycazo?tab=repositories",
     "favicon": "https://icons.better-idea.org/icon?size=80..120..200&url=github.com",
-    "brand": "Apycazo",
-    "index": "index.md",
+    "source": "./sources/",
     "scripts": [
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js",
         "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js",
@@ -23,22 +24,34 @@ An example for a config file looks like this:
         "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css",
         "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/zenburn.min.css"
     ],
-    "menu": [
-        {
-            "title": "Home 2",
-            "pages": [
-                { "title": "Test", "src": "pages/test.md" },
-                { "title": "Stub 1", "src": "pages/stub-1.md" }
-            ]
-        },
-        {
-            "title": "About",
-            "pages": [
-                { "title": "Stub 1", "src": "pages/stub-1.md" },
-                { "title": "Stub 2", "src": "pages/stub-2.md" }
-            ]
-        }
-    ]
+    "chapters": {
+        "Home": ["landing.md"],
+        "Marksite": [
+            "marksite/config.md",
+            "marksite/demo.md"
+        ],
+        "Java | Spring": [
+            "java/java-8-snippets.md",
+            "java/network.md",
+            "java/optional.md",
+            "java/spring-boot-context.md",
+            "java/configuration-properties.md",
+            "java/resource-handling.md",
+            "java/jackson-parser.md",
+            "java/rest-gateway.md"
+        ],
+        "Maven": [
+            "maven/settings-example.md",
+            "maven/external-properties.md",
+            "maven/repository-configuration.md"
+        ],
+        "Applications": [
+            "apps/amazon-AWS.md",
+            "apps/intellij-IDEA.md",
+            "apps/git.md",
+            "apps/linux.md"
+        ]
+    }
 }
 ```
 
@@ -50,4 +63,6 @@ An example for a config file looks like this:
 * **index**: what markdown page to use for the landing page (brand will link to this page).
 * **scripts**: this will be added in the 'scripts' section for the page. Note that angular is actually mandatory.
 * **styles**: same, but for text/css files.
-* **menu**: this describes the site pages, and allows for some organization. Each entry is considered a 'chapter', and a menu will be generated for each. If a chapter contains more than one page, a page selector will be added to the view.
+* **source**: This path will be used to prefix all chapter page entries.
+* **chapters**: this describes the site pages, and allows for some organization. Each entry will generate a menu.
+If a chapter contains more than one page, a page selector will be added to the view.
