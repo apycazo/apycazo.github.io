@@ -61,6 +61,23 @@ gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub" >> /etc/yum.repos.
 
 Editor: https://www.kirsle.net/wizards/ps1.html
 
+#### Regular user (~/.bashrc)
+```bash
+gitBranch () {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 7)\][\W] \[$(tput setaf 3)\]\$(gitBranch) \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]\[$(tput sgr0)\]"
+```
+
+#### Root (~/.bashrc)
+```bash
+gitBranch () {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u@\h \[$(tput setaf 7)\][\W] \[$(tput setaf 3)\]\$(gitBranch) \[$(tput setaf 1)\]\\$ \[$(tput sgr0)\]\[$(tput sgr0)\]"
+```
+
+#### Other prompts
 **White**: `PS1="\[$(tput bold)\]\[$(tput setaf 7)\]\u@\h [\W] \\$ \[$(tput sgr0)\]"`  
 **Green**: `PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 2)\] \\$ \[$(tput sgr0)\]"`  
 **Red**: `PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 1)\] \\$ \[$(tput sgr0)\]"`  
