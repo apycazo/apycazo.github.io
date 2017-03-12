@@ -85,7 +85,7 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u@\h \[$(tput setaf 7)\][\W] \[$
 
 #### Change PS1 on SSH sessions
 
-For users users
+Regular users
 ```
 if [ -n "$SSH_CLIENT" ]; then
    PS1="\[$(tput bold)\]\[$(tput setaf 3)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 3)\] \\$ \[$(tput sgr0)\]"
@@ -93,7 +93,7 @@ else
    PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 2)\] \\$ \[$(tput sgr0)\]"
 fi
 ```
-For root
+Root
 ```
 if [ -n "$SSH_CLIENT" ]; then
    PS1="\[$(tput bold)\]\[$(tput setaf 3)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 3)\] \\$ \[$(tput sgr0)\]"
