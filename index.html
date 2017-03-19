@@ -1048,7 +1048,9 @@ public class Gateway
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==3}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=3">
                 Linux</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==4}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=4">
-                Mysql cluster</a></ul></div>
+                Mysql cluster</a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==5}" ng-click="$root.bookmark.chapter=4; $root.bookmark.page=5">
+                Docker</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==0"><h1 id="amazon-vm-config">Amazon VM config</h1>
 <hr>
 <h2 id="links">Links</h2>
@@ -1256,13 +1258,13 @@ export PS1=&quot;\[$(tput bold)\]\[$(tput setaf 1)\]\u@\h \[$(tput setaf 7)\][\W
 <h4 id="other-prompts">Other prompts</h4>
 <p><strong>White</strong>: <code>PS1=&quot;\[$(tput bold)\]\[$(tput setaf 7)\]\u@\h [\W] \\$ \[$(tput sgr0)\]&quot;</code><br><strong>Green</strong>: <code>PS1=&quot;\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 2)\] \\$ \[$(tput sgr0)\]&quot;</code><br><strong>Red</strong>: <code>PS1=&quot;\[$(tput bold)\]\[$(tput setaf 1)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 1)\] \\$ \[$(tput sgr0)\]&quot;</code><br><strong>Gold</strong>: <code>PS1=&quot;\[$(tput bold)\]\[$(tput setaf 3)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 3)\] \\$ \[$(tput sgr0)\]&quot;</code>  </p>
 <h4 id="change-ps1-on-ssh-sessions">Change PS1 on SSH sessions</h4>
-<p>For users users</p>
+<p>Regular users</p>
 <pre><code>if [ -n &quot;$SSH_CLIENT&quot; ]; then
    PS1=&quot;\[$(tput bold)\]\[$(tput setaf 3)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 3)\] \\$ \[$(tput sgr0)\]&quot;
 else
    PS1=&quot;\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 2)\] \\$ \[$(tput sgr0)\]&quot;
 fi
-</code></pre><p>For root</p>
+</code></pre><p>Root</p>
 <pre><code>if [ -n &quot;$SSH_CLIENT&quot; ]; then
    PS1=&quot;\[$(tput bold)\]\[$(tput setaf 3)\]\u@\h \[$(tput setaf 7)\][\W]\[$(tput setaf 3)\] \\$ \[$(tput sgr0)\]&quot;
 else
@@ -1466,7 +1468,93 @@ systemctl start mysql
 }
 </code></pre><h2 id="virtualbox">VirtualBox</h2>
 <p>To avoid having to change the IP on config.ini, the easiest thing to do is to redirect local port ‘1186’ to guest port ‘1186’ (Use the NAT connection for this).</p>
-</div></div>
+</div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==4 && $root.bookmark.page==5"><h1 id="docker">Docker</h1>
+<hr>
+<h2 id="useful-commands">Useful commands</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process list</td>
+<td><code>docker ps</code></td>
+</tr>
+<tr>
+<td>Process list (all)</td>
+<td><code>docker ps -a</code></td>
+</tr>
+<tr>
+<td>Run container in background</td>
+<td><code>docker run -d &lt;tag&gt;</code></td>
+</tr>
+<tr>
+<td>Run on container</td>
+<td><code>docker exec &lt;tag&gt; &lt;cmd&gt;</code></td>
+</tr>
+<tr>
+<td>Run on interactive tty</td>
+<td><code>docker run -it &lt;tag&gt; &lt;cmd&gt;</code></td>
+</tr>
+<tr>
+<td>Run &amp; dispose container</td>
+<td><code>docker run -it --rm &lt;tag&gt; &lt;cmd&gt;</code></td>
+</tr>
+<tr>
+<td>Stop all containers</td>
+<td><code>docker stop $(docker ps -a -q)</code></td>
+</tr>
+<tr>
+<td>Remove all containers</td>
+<td><code>docker rm $(docker ps -a -q)</code></td>
+</tr>
+<tr>
+<td>Remove dangling containers</td>
+<td><code>docker rmi $(docker images -q -f dangling=true)</code></td>
+</tr>
+<tr>
+<td>Network list</td>
+<td><code>docker network</code></td>
+</tr>
+<tr>
+<td>Network details (bridge)</td>
+<td><code>docker network inspect bridge</code></td>
+</tr>
+<tr>
+<td>Build image with tags</td>
+<td><code>docker build -t &lt;tag&gt; .</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="sample-image-dockerfile">Sample image Dockerfile</h2>
+<p>From <a href="https://github.com/apycazo/trivialis">trivialis</a> repo:</p>
+<pre><code>### ==========================================================================
+### Docker image for the trivialis provider to run:
+### $ mvn clean package &amp;&amp; docker build -t trivialis/provider .
+### $ docker run -d -p 8080:8080 --name trivialis-provider trivialis/provider
+### ==========================================================================
+
+# Use Centos as base layer
+FROM centos
+# Run system update
+RUN yum -y upgrade
+# Install openjdk
+RUN yum -y install java-1.8.0-openjdk
+# Open port
+EXPOSE 8080
+# Mount tmp volume on host
+VOLUME /tmp
+# Add jar file
+ADD /target/trivialis-provider-1.0-SNAPSHOT.jar trivialis-provider.jar
+# Update &#39;last modified&#39; field
+RUN sh -c &#39;touch /trivialis-provider.jar&#39;
+# On start command
+ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/trivialis-provider.jar&quot;]
+</code></pre></div></div>
         <div class="footer"><p>Built with <a href="https://github.com/apycazo/marksite">Marksite</a></p></div>
     </div>
 </body>

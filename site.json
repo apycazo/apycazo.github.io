@@ -42,7 +42,8 @@
             "apps/intellij-IDEA.md",
             "apps/git.md",
             "apps/linux.md",
-            "apps/mysql-cluster.md"
+            "apps/mysql-cluster.md",
+            "apps/docker.md"
         ]
     }
 }
