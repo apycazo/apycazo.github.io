@@ -1509,6 +1509,10 @@ systemctl start mysql
 <td><code>docker stop $(docker ps -a -q)</code></td>
 </tr>
 <tr>
+<td>Kill all containers</td>
+<td><code>docker kill $(docker ps -a -q)</code></td>
+</tr>
+<tr>
 <td>Remove all containers</td>
 <td><code>docker rm $(docker ps -a -q)</code></td>
 </tr>
@@ -1527,6 +1531,18 @@ systemctl start mysql
 <tr>
 <td>Build image with tags</td>
 <td><code>docker build -t &lt;tag&gt; .</code></td>
+</tr>
+<tr>
+<td>Open bash terminal</td>
+<td><code>docker exec -ti trivialis-provider /bin/bash</code></td>
+</tr>
+<tr>
+<td>Container logs</td>
+<td><code>docker log &lt;tag&gt;</code></td>
+</tr>
+<tr>
+<td>Container logs (+ tail)</td>
+<td><code>docker log -ft &lt;tag&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -1554,6 +1570,12 @@ ADD /target/trivialis-provider-1.0-SNAPSHOT.jar trivialis-provider.jar
 RUN sh -c &#39;touch /trivialis-provider.jar&#39;
 # On start command
 ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/trivialis-provider.jar&quot;]
+</code></pre><h2 id="volume-mount">Volume Mount</h2>
+<p>Use parameter <code>-v &lt;target&gt; &lt;source&gt;</code> to mount a volume on the container (this is equivalent to use <code>VOLUME</code> on the Dockerfile).  An example:</p>
+<pre><code>docker run -d -P --name web -v /webapp training/webapp python app.py
+</code></pre><p><em>Note: -P option maps ports ensuring no conflicts</em></p>
+<h2 id="to-save-a-running-container-as-an-image">To save a running container as an image</h2>
+<pre><code>docker commit -m “commit message” -a “author” container_name username/image_name:tag
 </code></pre></div></div>
         <div class="footer"><p>Built with <a href="https://github.com/apycazo/marksite">Marksite</a></p></div>
     </div>
