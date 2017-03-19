@@ -1570,10 +1570,20 @@ ADD /target/trivialis-provider-1.0-SNAPSHOT.jar trivialis-provider.jar
 RUN sh -c &#39;touch /trivialis-provider.jar&#39;
 # On start command
 ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/trivialis-provider.jar&quot;]
+</code></pre><h2 id="network-connect">Network connect</h2>
+<p>Excerpt from docker documentation:</p>
+<h4 id="connect-a-running-container-to-a-network">Connect a running container to a network</h4>
+<pre><code>$ docker network connect multi-host-network container1
+</code></pre><h4 id="connect-a-container-to-a-network-when-it-starts">Connect a container to a network when it starts</h4>
+<p>You can also use the <code>docker run --network=&lt;network-name&gt;</code> option to start a container and immediately connect it to a network.</p>
+<pre><code>$ docker run -itd --network=multi-host-network busybox
+</code></pre><h4 id="specify-the-ip-address-a-container-will-use-on-a-given-network">Specify the IP address a container will use on a given network</h4>
+<p>You can specify the IP address you want to be assigned to the container’s interface.</p>
+<pre><code>$ docker network connect --ip 10.10.36.122 multi-host-network container2
 </code></pre><h2 id="volume-mount">Volume Mount</h2>
-<p>Use parameter <code>-v &lt;target&gt; &lt;source&gt;</code> to mount a volume on the container (this is equivalent to use <code>VOLUME</code> on the Dockerfile).  An example:</p>
+<p>Use parameter <code>-v &lt;target&gt;</code> to mount a volume on the container (this is equivalent to use <code>VOLUME</code> on the Dockerfile).  An example:</p>
 <pre><code>docker run -d -P --name web -v /webapp training/webapp python app.py
-</code></pre><p><em>Note: -P option maps ports ensuring no conflicts</em></p>
+</code></pre><p><em>Note: the -P option maps ports ensuring no conflicts</em></p>
 <h2 id="to-save-a-running-container-as-an-image">To save a running container as an image</h2>
 <pre><code>docker commit -m “commit message” -a “author” container_name username/image_name:tag
 </code></pre></div></div>

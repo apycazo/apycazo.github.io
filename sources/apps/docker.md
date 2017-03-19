@@ -49,13 +49,34 @@ RUN sh -c 'touch /trivialis-provider.jar'
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/trivialis-provider.jar"]
 ```
 
+## Network connect
+
+Excerpt from docker documentation:
+
+#### Connect a running container to a network
+```
+$ docker network connect multi-host-network container1
+```
+
+#### Connect a container to a network when it starts
+You can also use the `docker run --network=<network-name>` option to start a container and immediately connect it to a network.
+```
+$ docker run -itd --network=multi-host-network busybox
+```
+
+#### Specify the IP address a container will use on a given network
+You can specify the IP address you want to be assigned to the container’s interface.
+```
+$ docker network connect --ip 10.10.36.122 multi-host-network container2
+```
+
 ## Volume Mount
-Use parameter `-v <target> <source>` to mount a volume on the container (this is equivalent to use `VOLUME` on the Dockerfile).  An example:
+Use parameter `-v <target>` to mount a volume on the container (this is equivalent to use `VOLUME` on the Dockerfile).  An example:
 
 ```
 docker run -d -P --name web -v /webapp training/webapp python app.py
 ```  
-*Note: -P option maps ports ensuring no conflicts*
+*Note: the -P option maps ports ensuring no conflicts*
 
 ## To save a running container as an image
 
