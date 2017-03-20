@@ -10,6 +10,9 @@ core.controller('MasterCtrl', ['$scope', MasterCtrl]);
 
 core.run(['$rootScope', '$window', '$location', function ($rootScope, $window, $location) {
 
+    $rootScope.$on("$includeContentLoaded", function(event, templateName){
+        $('.modal img').on('click', function () {$('.modal').modal('hide')});
+    });
 
     $rootScope.configureCarousel = function (interval) {
 

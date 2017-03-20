@@ -79,7 +79,12 @@
                                 </div>
                             </div>
                             <!-- Gallery button -->
-                            <button type="button" class="btn btn-corporate" data-toggle="modal" data-target=".modal-for-job-6-gallery">See gallery</button>
+                            <button
+                                type="button"
+                                class="btn btn-corporate"
+                                ng-click="$('.modal-for-job-6-gallery').modal('hide');"
+                                data-toggle="modal"
+                                data-target=".modal-for-job-6-gallery">See gallery</button>
                             <div class="modal fade modal-for-job-6-gallery" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
