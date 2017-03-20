@@ -1,0 +1,14 @@
+Notas:
+
+- El navegador cachea los HTML, para comprobar los cambios hay que limpiar la cache.
+  Recomendado: https://chrome.google.com/webstore/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn
+
+- Editor: Atom (www.atom.io)
+
+- Para añadir links (o hacer algo al hacer click): Añadir lo siguiente (ejemplo):
+  <span class="fa-stack fa-lg show-pointer" ng-click="openLink('https://www.youtube.com/watch?v=tuRZoZuMWjQ')">
+  Para añadir un icono de 'click':
+  class="show-pointer" (se puede añadir a otras class):
+  class="show-pointer test-1 test2"
+
+- Icons: http://fontawesome.io/icons/  

@@ -1,0 +1,11 @@
+{
+  "name": "hunters-producciones",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "jquery": "3.1.x",
+    "angular": "1.6.x",
+    "bootstrap": "3.x",
+    "font-awesome": "*"
+  }
+}

@@ -13,7 +13,8 @@
 | Stop all containers         | `docker stop $(docker ps -a -q)`                  |  
 | Kill all containers         | `docker kill $(docker ps -a -q)`                  |  
 | Remove all containers       | `docker rm $(docker ps -a -q)`                    |  
-| Remove dangling containers  | `docker rmi $(docker images -q -f dangling=true)` |  
+| Remove image                | `docker rmi <iamge>`                              |  
+| Remove dangling images      | `docker rmi $(docker images -q -f dangling=true)` |  
 | Network list                | `docker network`                                  |  
 | Network details (bridge)    | `docker network inspect bridge`                   |  
 | Build image with tags       | `docker build -t <tag> .`                         |  

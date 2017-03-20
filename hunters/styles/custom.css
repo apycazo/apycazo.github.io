@@ -1,0 +1,288 @@
+
+
+.corporate-info .fa-stack:hover {
+    color: white;
+}
+
+
+/* Overall font style */
+body {
+    font-family: 'Source Sans Pro',sans-serif;
+    background-color: #ffffff;
+}
+
+/* Navigation bar colors */
+.navbar {
+    background-color: #4C3D37;
+    color: #FBFAFA;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #FBFAFA; /* Link text color */
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #000000; /* Link text color (when mouse hovers) */
+}
+
+/* Change navbar height */
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 80px;
+    height: 80px;
+    padding-top: 0;
+    font-weight: bold;
+}
+
+/* Fix to fit brand image */
+.navbar-brand {
+  padding: 0px;
+}
+
+.navbar-brand>img {
+  height: 100%;
+  padding: 3px 15px;
+  width: auto;
+}
+
+/* Corporate statement styles */
+.corporate-statement {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.corporate-statement {
+    color: #beb182;
+}
+
+.corporate-statement h3 {
+    color: #000000;
+    padding: 15px 0px 15px 0px;
+}
+
+.corporate-statement p {
+    text-align: left;
+}
+
+.corporate-statement h5 {
+    color: #beb182;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.corporate-statement h4 {
+    padding: 5px 5px 5px 5px;
+}
+
+.corporate-statement img {
+    margin: 10px 0px 0px 0px;
+}
+
+.corporate-services {
+    background-color: #E4D9B5;
+}
+
+.corporate-services h5 {
+    color: #4c3d37;
+}
+
+.corporate-services i {
+    color: #4c3d37;
+}
+
+/* corporate-team */
+.corporate-team {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.corporate-team .section-title {
+    color: #000000;
+    text-align: center;
+    padding: 30px;
+}
+
+.corporate-team h3 {
+    text-align: center;
+    color: #beb182;
+    font-weight: bold;
+    padding: 10px 0px 5px 0px;
+}
+
+.corporate-team h4 {
+    text-align: center;
+    color: #e4d9b5;
+    padding: 5px 0px 10px 0px;
+}
+
+.corporate-team img {
+    width: 50%;
+    display:block;
+    margin:auto;
+}
+
+.image-gallery img {
+    width: 100%;
+}
+
+/* parallax scroll effects */
+.parallax {
+     /* Set a specific height */
+    min-height: 300px;
+    position: relative;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
+
+ .parallax-container h3 {
+     text-align: center;
+     color: #4c3d37;
+     position: absolute;
+     top: 50%;
+  	 height: 100px;
+  	 margin-top: -20px;
+     width:100%;
+     font-size: 25px;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+     letter-spacing: 5px;
+ }
+
+ .background-sea {
+     background-image: url("../resources/parallax-sea-cropped.png");
+ }
+
+ /* Carousel tricks to avoid using multiple images */
+
+.testimonials {
+
+}
+
+.testimonials.carousel.slide {
+  background: url("../resources/parallax-sun.png");
+  /* Create the parallax scrolling effect */
+  min-height: 400px;
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.testimonials .item {
+  height: 400px;
+}
+
+.testimonials .carousel-caption {
+    text-align: center;
+    color: #ffffff;
+    position: absolute;
+    top: 30%;
+    /*height: 100px;*/
+    margin-top: -20px;
+    /*width:100%;*/
+    font-size: 25px;
+}
+
+.testimonials h3 {
+    color: #BEB182;
+}
+
+.testimonials h4 {
+    color: #e4d9b5;
+    font-size: 21px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    padding-bottom: 10px;
+}
+
+/* Circular border for icons*/
+.circular-border {
+    border-width: 1px;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    position: relative;
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial;
+    border: 2px solid #beb182;
+    border-radius: 5em;
+}
+
+.circular-border:hover {
+    background: #ecae80;
+    color: #fff;
+}
+/* Style for icon + title + description */
+.concept-display {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.concept-display .icon-holder {
+    float:left;
+}
+
+.concept-display .content-holder {
+    padding-left: 100px;
+}
+
+/* Corporate info styles */
+.corporate-info {
+    background-color: #4C3D37;
+    color: #777777;
+}
+
+.corporate-info img {
+    width: 50%;
+    display:block;
+    margin:auto;
+    padding-bottom: 20px;
+}
+
+.social {
+    text-align: center;
+}
+
+.center-me {
+    text-align: center;
+}
+
+.corporate-info div {
+    /*min-height: 80px;*/
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.divider-vertical {
+    position:absolute;
+    left:50%;
+    top:10%;
+    bottom:10%;
+    border-left:1px solid #777777;
+}
+
+.center-content {
+    width: 50%;
+    display:block;
+    margin:auto;
+    padding-bottom: 20px;
+}
+
+.show-pointer {
+    cursor: pointer;
+}
+
+.btn-corporate {
+    background-color: #4C3D37;
+    color: white;
+}
+
+.btn-corporate:hover {
+    background-color: #998A84;
+    color: white;
+}
