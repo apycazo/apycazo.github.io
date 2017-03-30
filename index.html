@@ -216,7 +216,9 @@ And <strong>by the way</strong>, other markdown <code>still</code> works!</p>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==7}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=7">
                 Jackson parser</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==8}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=8">
-                Rest gateway</a></ul></div>
+                Rest gateway</a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==9}" ng-click="$root.bookmark.chapter=2; $root.bookmark.page=9">
+                Rest template http</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==0"><h1 id="java-8">Java 8</h1>
 <hr>
 <h2 id="java-optional">Java optional</h2>
@@ -957,13 +959,188 @@ public class Gateway
 }
 </code></pre>
 </div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==2 && $root.bookmark.page==9"><h1 id="rest-template">Rest template</h1>
+<hr>
+<h2 id="outboud-interceptor">Outboud interceptor</h2>
+<pre><code class="lang-java">@Slf4j
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class OutboundInterceptor implements ClientHttpRequestInterceptor
+{
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    private String origin = &quot;rest-service&quot;;
+    private String requestOriginHeader = &quot;X-Request-Origin&quot;;
+    private String requestIdHeader = &quot;X-Request-Id&quot;;
+
+    @Override
+    public ClientHttpResponse intercept(
+            HttpRequest httpRequest,
+            byte[] bytes,
+            ClientHttpRequestExecution clientHttpRequestExecution)
+            throws IOException
+    {
+        log.info(&quot;Intercepting headers&quot;);
+        HttpHeaders headers = httpRequest.getHeaders();
+
+        if (!headers.containsKey(requestOriginHeader)) {
+            headers.add(requestOriginHeader, origin);
+        }
+        if (!headers.containsKey(requestIdHeader)) {
+            headers.add(requestIdHeader, UUID.randomUUID().toString());
+        }
+
+        return clientHttpRequestExecution.execute(httpRequest, bytes);
+    }
+}
+</code></pre>
+<h2 id="rest-template-config-using-netty">Rest template config using Netty</h2>
+<p>An example from the legacy &#39;pylon&#39; proyect:</p>
+<pre><code class="lang-java">/**
+ * Instances a netty factory, a rest template and an async rest template using it.
+ * If another {@link ClientHttpRequestFactory} is found, then it will be used for both.
+ * &lt;p&gt;
+ * A netty http request factory is used by default, to override it, provide a {@link ClientHttpRequestFactory} bean.
+ * &lt;p&gt;
+ * Note that all this components are lazily initialized, so they will only be instanced when another bean or
+ * configuration auto-wires them, or they are fetched from the spring context.
+ * &lt;p&gt;
+ * The default {@link RestTemplate} will register any {@link ClientHttpRequestInterceptor} found. To disable use the
+ * property &#39;registerInterceptors&#39;.
+ *
+ * &lt;p&gt;
+ * Properties for this class will be fetched using the prefix: &lt;strong&gt;&quot;pylon.rest&quot;&lt;/strong&gt;.
+ *
+ * &lt;p&gt;
+ * A sample configuration for this components, using YAML and default values:
+ * &lt;pre&gt;
+ * pylon.rest:
+ *      timeout: 5000
+ *      registerInterceptors: true
+ *      outboundProcessing: true
+ *      requestOriginHeader: X-Request-Origin
+ *      requestIdHeader: X-Request-Id
+ * &lt;/pre&gt;
+ *
+ * @author Andres Picazo
+ */
+@Lazy
+@Slf4j
+@Configuration
+@ConfigurationProperties(prefix = &quot;pylon.rest&quot;)
+public class RestTemplateConfig
+{
+    /**
+     * The connection timeout (Default value is 5000). Can be set using a config property.
+     */
+    private int timeout = 5000;
+
+    /**
+     * When true (default), the RestTemplate bean will register any {@link ClientHttpRequestInterceptor} found.
+     */
+    private boolean registerInterceptors = true;
+    /**
+     * When true (default), instances an Outbound interceptor, setting headers before submitting.
+     */
+    private boolean outboundProcessing = true;
+    /**
+     * The header key to be added for the request origin
+     */
+    private final String requestOriginHeader = &quot;X-Request-Origin&quot;;
+    /**
+     * The header key to be added for the request id
+     */
+    private final String requestIdHeader = &quot;X-Request-Id&quot;;
+
+    /**
+     * Fetches any {@link ClientHttpRequestInterceptor} found.
+     */
+    @Autowired(required = false)
+    private ClientHttpRequestInterceptor[] requestInterceptors;
+
+    /**
+     * Instances a {@link Netty4ClientHttpRequestFactory} if no {@link ClientHttpRequestFactory} bean is found.
+     * &lt;p&gt;
+     * This component is lazily initialized.
+     *
+     * @return The instanced {@link Netty4ClientHttpRequestFactory}, configured with the provided &#39;timeout&#39; value.
+     */
+    @Bean(name = &quot;pylon::netty-request-factory&quot;)
+    @ConditionalOnMissingBean(ClientHttpRequestFactory.class)
+    protected Netty4ClientHttpRequestFactory nettyFactory ()
+    {
+        Netty4ClientHttpRequestFactory factory = new Netty4ClientHttpRequestFactory();
+        factory.setConnectTimeout(timeout);
+        return factory;
+    }
+
+    /**
+     * If no other {@link RestTemplate} bean is found, will instance one. If this one is used, will fetch and register
+     * any {@link ClientHttpRequestInterceptor} found.
+     * &lt;p&gt;
+     * This component is lazily initialized. Bean name is &quot;pylon::rest-template&quot;.
+     * @return a configured {@link RestTemplate}, by default using a {@link Netty4ClientHttpRequestFactory}.
+     */
+    @Bean(name = &quot;pylon::rest-template&quot;)
+    @ConditionalOnMissingBean(RestTemplate.class)
+    protected RestTemplate instanceRestTemplate()
+    {
+        log.info(&quot;Instancing pylon rest template&quot;);
+
+        RestTemplate rt = new RestTemplate(nettyFactory());
+
+        if (registerInterceptors) {
+            List&lt;ClientHttpRequestInterceptor&gt; list = new LinkedList&lt;&gt;();
+            if (outboundProcessing) {
+                String host;
+                try {
+                    host = InetAddress.getLocalHost().getHostAddress();
+                } catch (UnknownHostException e) {
+                    host = &quot;0.0.0.0&quot;;
+                }
+                OutboundInterceptor outboundInterceptor = OutboundInterceptor.builder()
+                        .origin(host)
+                        .requestIdHeader(requestIdHeader)
+                        .requestOriginHeader(requestOriginHeader)
+                        .build();
+                list.add(outboundInterceptor);
+            }
+            if (requestInterceptors != null &amp;&amp; requestInterceptors.length &gt; 0) {
+                list.addAll(Arrays.asList(requestInterceptors));
+            }
+            rt.setInterceptors(list);
+        }
+
+        return rt;
+    }
+
+    /**
+     * If no other {@link AsyncRestTemplate} is found, will instance one using the {@link Netty4ClientHttpRequestFactory}.
+     * &lt;p&gt;
+     * This component is lazily initialized.
+     *
+     * @return the configured async rest template. Bean name is &quot;pylon::async-rest-template&quot;.
+     */
+    @Bean(name = &quot;pylon::async-rest-template&quot;)
+    @ConditionalOnMissingBean(AsyncRestTemplate.class)
+    protected AsyncRestTemplate instanceAsyncRestTemplate()
+    {
+        return new AsyncRestTemplate(nettyFactory());
+    }
+}
+</code></pre>
+</div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==3">
             <ul class="list-group"><a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==0}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=0">
                 Settings example</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==1}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=1">
                 External properties</a>
 <a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==2}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=2">
-                Repository configuration</a></ul></div>
+                Repository configuration</a>
+<a href="#" ng-class="{'list-group-item':true, active:$root.bookmark.page==3}" ng-click="$root.bookmark.chapter=3; $root.bookmark.page=3">
+                Spring maven</a></ul></div>
 <div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==0"><h1 id="maven-settings-example">Maven settings example</h1>
 <hr>
 <pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -1036,6 +1213,153 @@ public class Gateway
     &lt;name&gt;localrepo&lt;/name&gt;
     &lt;url&gt;file://${basedir}/deps&lt;/url&gt;
 &lt;/repository&gt;
+</code></pre>
+</div>
+<div class="content-viewport col-md-9 " ng-show="$root.bookmark.chapter==3 && $root.bookmark.page==3"><h1 id="maven-tooltips">Maven tooltips</h1>
+<hr>
+<h3 id="configuration-processor">Configuration processor</h3>
+<p>This dependency will scan the module looking for <code>@ConfigurationProperties</code>. Any value found will be included inside the jar in the
+<code>META-INF/spring-configuration-metadata.json</code> file. Output looks like:</p>
+<pre><code class="lang-json">{
+  &quot;hints&quot;: [],
+  &quot;groups&quot;: [
+    {
+      &quot;sourceType&quot;: &quot;com.github.apycazo.trivialis.client.config.TrivialisClientConfigurer&quot;,
+      &quot;name&quot;: &quot;services.trivialis&quot;,
+      &quot;type&quot;: &quot;com.github.apycazo.trivialis.client.config.TrivialisClientConfigurer&quot;
+    }
+  ],
+  &quot;properties&quot;: [
+    {
+      &quot;sourceType&quot;: &quot;com.github.apycazo.trivialis.client.config.TrivialisClientConfigurer&quot;,
+      &quot;defaultValue&quot;: &quot;http:\/\/127.0.0.1:8080&quot;,
+      &quot;name&quot;: &quot;services.trivialis.provider&quot;,
+      &quot;type&quot;: &quot;java.lang.String&quot;
+    },
+    {
+      &quot;sourceType&quot;: &quot;com.github.apycazo.trivialis.client.config.TrivialisClientConfigurer&quot;,
+      &quot;defaultValue&quot;: &quot;http:\/\/127.0.0.1:8080&quot;,
+      &quot;name&quot;: &quot;services.trivialis.provider&quot;,
+      &quot;type&quot;: &quot;java.lang.String&quot;
+    }
+  ]
+}
+</code></pre>
+<pre><code class="lang-xml">&lt;!-- Include property config --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="resource-filtering">Resource filtering</h3>
+<pre><code class="lang-xml">&lt;resources&gt;
+    &lt;resource&gt;
+        &lt;filtering&gt;true&lt;/filtering&gt;
+        &lt;directory&gt;${basedir}/src/main/resources&lt;/directory&gt;
+        &lt;includes&gt;
+            &lt;include&gt;*.properties&lt;/include&gt;
+            &lt;include&gt;*.yml&lt;/include&gt;
+        &lt;/includes&gt;
+    &lt;/resource&gt;
+    &lt;resource&gt;
+        &lt;filtering&gt;false&lt;/filtering&gt;
+        &lt;directory&gt;${basedir}/src/main/resources&lt;/directory&gt;
+        &lt;includes&gt;
+            &lt;include&gt;favicon.ico&lt;/include&gt;
+        &lt;/includes&gt;
+    &lt;/resource&gt;
+&lt;/resources&gt;
+</code></pre>
+<h3 id="repackaging-script">Repackaging script</h3>
+<pre><code class="lang-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;${springboot.version}&lt;/version&gt;
+    &lt;!-- Add service script --&gt;
+    &lt;configuration&gt;
+        &lt;executable&gt;true&lt;/executable&gt;
+    &lt;/configuration&gt;
+    &lt;!-- Create a fat jar --&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;repackage&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+<h3 id="include-git-info-as-properties">Include git info as properties</h3>
+<pre><code class="lang-xml">&lt;plugin&gt;
+    &lt;groupId&gt;pl.project13.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;git-commit-id-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.2.2&lt;/version&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>Sample output on <code>/BOOT-INF/classes/git.properties</code>:</p>
+<pre><code>#Generated by Git-Commit-Id-Plugin
+#Thu Mar 30 21:19:18 CEST 2017
+git.build.user.email=user@test.com
+git.build.host=fedora25
+git.dirty=true
+git.remote.origin.url=git@github.com\:apycazo/trivialis.git
+git.closest.tag.name=
+git.commit.id.describe-short=ebba938-dirty
+git.commit.user.email=user@test.com
+git.commit.time=2017-03-30T20\:39\:51+0200
+git.commit.message.full=Added maven wrapper for builds.
+git.build.version=1.0-SNAPSHOT
+git.commit.message.short=Added maven wrapper for builds.
+git.commit.id.abbrev=ebba938
+git.branch=master
+git.build.user.name=Andres Picazo
+git.closest.tag.commit.count=
+git.commit.id.describe=ebba938-dirty
+git.commit.id=ebba938bc3aa52618ad890d91f0c4b9d52f44547
+git.tags=
+git.build.time=2017-03-30T21\:19\:18+0200
+git.commit.user.name=Andres Picazo
+</code></pre><h3 id="include-build-info-as-properties">Include build info as properties</h3>
+<p>Add <code>build-info</code> goal:</p>
+<pre><code class="lang-xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;build-info&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>Sample output on <code>/META-INF/build-info.properties</code>:</p>
+<pre><code>#Properties
+#Thu Mar 30 21:19:18 CEST 2017
+build.time=2017-03-30T21\:19\:18+0200
+build.artifact=trivialis-client
+build.group=com.github.apycazo
+build.name=trivialis-client
+build.version=1.0-SNAPSHOT
+</code></pre><h3 id="add-spring-cloud-dependencies">Add Spring Cloud dependencies</h3>
+<pre><code class="lang-xml">&lt;properties&gt;
+    &lt;!-- JAVA VERSION --&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+    &lt;spring-cloud-netflix.version&gt;1.2.0.RELEASE&lt;/spring-cloud-netflix.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+        &lt;!-- Imports --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-netflix&lt;/artifactId&gt;
+            &lt;version&gt;${spring-cloud-netflix.version}&lt;/version&gt;
+            &lt;type&gt;pom&lt;/type&gt;
+            &lt;scope&gt;import&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
 </code></pre>
 </div>
 <div class="content-selector col-md-2" ng-show="$root.bookmark.chapter==4">
@@ -1517,7 +1841,11 @@ systemctl start mysql
 <td><code>docker rm $(docker ps -a -q)</code></td>
 </tr>
 <tr>
-<td>Remove dangling containers</td>
+<td>Remove image</td>
+<td><code>docker rmi &lt;iamge&gt;</code></td>
+</tr>
+<tr>
+<td>Remove dangling images</td>
 <td><code>docker rmi $(docker images -q -f dangling=true)</code></td>
 </tr>
 <tr>

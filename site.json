@@ -30,12 +30,14 @@
             "java/configuration-properties.md",
             "java/resource-handling.md",
             "java/jackson-parser.md",
-            "java/rest-gateway.md"
+            "java/rest-gateway.md",
+            "java/rest-template-http.md"
         ],
         "Maven": [
             "maven/settings-example.md",
             "maven/external-properties.md",
-            "maven/repository-configuration.md"
+            "maven/repository-configuration.md",
+            "maven/spring-maven.md"
         ],
         "Applications": [
             "apps/amazon-AWS.md",
