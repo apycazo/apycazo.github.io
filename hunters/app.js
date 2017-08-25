@@ -14,7 +14,7 @@ function MasterCtrl ($scope, $sce)
             console.log('click');
             $('.modal').modal('hide');
         },
-        goBack = function () {
+        goBack: function () {
             $('.modal').modal('hide');
         },
         entry: {}
