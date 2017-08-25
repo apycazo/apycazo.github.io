@@ -10,8 +10,17 @@ function MasterCtrl ($scope, $sce)
         selectEntry: function (data) {
             $scope.entry = data;
         },
+        closeModal: function () {
+            console.log('click');
+            $('.modal').modal('hide');
+        },
+        goBack = function () {
+            $('.modal').modal('hide');
+        },
         entry: {}
-    })
+    });
+
+    // $('.modal img').on('click', function () { $('.modal').modal('hide') });
 
     $scope.portfolio = [
         {
