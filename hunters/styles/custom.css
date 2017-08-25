@@ -1,13 +1,15 @@
 
 
-.corporate-info .fa-stack:hover {
-    color: white;
+.corporate-info .fa-stack.linked:hover {
+    color: #ffffff;
 }
 
 
 /* Overall font style */
 body {
-    font-family: 'Source Sans Pro',sans-serif;
+    /* font-family: 'Courgette','Source Sans Pro'; */
+    /*font-family: 'Source Sans Pro',sans-serif;*/
+    font-family: 'Source Sans Pro','sans-serif';
     background-color: #ffffff;
 }
 
@@ -54,6 +56,7 @@ body {
 
 .corporate-statement {
     color: #beb182;
+    background-color: #f2f2f2;
 }
 
 .corporate-statement h3 {
@@ -63,6 +66,7 @@ body {
 
 .corporate-statement p {
     text-align: left;
+    color: #a09053;
 }
 
 .corporate-statement h5 {
@@ -74,6 +78,8 @@ body {
 
 .corporate-statement h4 {
     padding: 5px 5px 5px 5px;
+    color: #6e6239;
+    font-size: 20px;
 }
 
 .corporate-statement img {
@@ -123,6 +129,11 @@ body {
     margin:auto;
 }
 
+.image-gallery {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 .image-gallery img {
     width: 100%;
 }
@@ -159,7 +170,7 @@ body {
  /* Carousel tricks to avoid using multiple images */
 
 .testimonials {
-
+    font-family: 'Courgette','Source Sans Pro';
 }
 
 .testimonials.carousel.slide {
@@ -213,10 +224,11 @@ body {
     border-radius: 5em;
 }
 
-.circular-border:hover {
+/*.circular-border:hover {
     background: #ecae80;
     color: #fff;
-}
+}*/
+
 /* Style for icon + title + description */
 .concept-display {
     padding-top: 30px;
@@ -238,10 +250,10 @@ body {
 }
 
 .corporate-info img {
-    width: 50%;
+    /*width: 50%;*/
+    /*padding-bottom: 20px;*/
     display:block;
     margin:auto;
-    padding-bottom: 20px;
 }
 
 .social {
@@ -254,8 +266,8 @@ body {
 
 .corporate-info div {
     /*min-height: 80px;*/
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .divider-vertical {
