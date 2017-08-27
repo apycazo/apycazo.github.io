@@ -191,7 +191,7 @@ body {
     text-align: center;
     color: #ffffff;
     position: absolute;
-    top: 30%;
+    top: 20%;
     /*height: 100px;*/
     margin-top: -20px;
     /*width:100%;*/
@@ -208,6 +208,13 @@ body {
     font-weight: 300;
     letter-spacing: 5px;
     padding-bottom: 10px;
+}
+
+/* sets smaller font size on small screens */
+@media screen and (max-width: 600px) {
+    .testimonials h4 {
+        font-size: 16px;
+    }
 }
 
 /* Circular border for icons*/
