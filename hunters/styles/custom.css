@@ -292,6 +292,14 @@ body {
     padding-bottom: 20px;
 }
 
+/* Custom width on small screens */
+@media screen and (max-width: 600px) {
+    .center-content {
+        width: 80%;
+        padding-bottom: 10px;
+    }
+}
+
 .show-pointer {
     cursor: pointer;
 }

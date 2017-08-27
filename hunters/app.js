@@ -20,43 +20,41 @@ function MasterCtrl ($scope, $sce)
         entry: {}
     });
 
-    // $('.modal img').on('click', function () { $('.modal').modal('hide') });
-
     $scope.portfolio = [
         {
             roc: {
                 title: 'Roc',
                 desc: 'Publicidad',
                 video: '',
-                thumbnail: 'portfolio/roc/roc-1.png',
+                thumbnail: 'portfolio/roc/roc-1.jpg',
                 gallery: [
-                    'portfolio/roc/roc-1.png',
-                    'portfolio/roc/roc-2.png'
+                    'portfolio/roc/roc-1.jpg',
+                    'portfolio/roc/roc-2.jpg'
                 ]
             },
             lenceria: {
                 title: 'Lenceria',
                 desc: 'Publicidad',
                 video: '',
-                thumbnail: 'portfolio/lenceria/lenceria-1.png',
+                thumbnail: 'portfolio/lenceria/lenceria-1.jpg',
                 gallery: [
-                    'portfolio/lenceria/lenceria-1.png',
-                    'portfolio/lenceria/lenceria-2.png'
+                    'portfolio/lenceria/lenceria-1.jpg',
+                    'portfolio/lenceria/lenceria-2.jpg'
                 ]
             },
             trainer: {
                 title: "Personal Trainer",
                 desc: 'Formato de televisión para desarrollo de contenido de marca.',
                 video: '',
-                thumbnail: 'portfolio/trainer/trainer-1.png',
+                thumbnail: 'portfolio/trainer/trainer-1.jpg',
                 gallery: [
-                    'portfolio/trainer/trainer-1.png',
-                    'portfolio/trainer/trainer-2.png',
-                    'portfolio/trainer/trainer-3.png',
-                    'portfolio/trainer/trainer-4.png',
-                    'portfolio/trainer/trainer-5.png',
-                    'portfolio/trainer/trainer-6.png',
-                    'portfolio/trainer/trainer-7.png'
+                    'portfolio/trainer/trainer-1.jpg',
+                    'portfolio/trainer/trainer-2.jpg',
+                    'portfolio/trainer/trainer-3.jpg',
+                    'portfolio/trainer/trainer-4.jpg',
+                    'portfolio/trainer/trainer-5.jpg',
+                    'portfolio/trainer/trainer-6.jpg',
+                    'portfolio/trainer/trainer-7.jpg'
                 ]
             }
         }, {
@@ -85,14 +83,14 @@ function MasterCtrl ($scope, $sce)
                 title: "Online",
                 desc: 'Desarrollo de formato de serie de televisión para branded content.',
                 video: '',
-                thumbnail: 'portfolio/online/online-1.png',
+                thumbnail: 'portfolio/online/online-1.jpg',
                 gallery: [
-                    'portfolio/online/online-1.png',
-                    'portfolio/online/online-2.png',
-                    'portfolio/online/online-3.png',
-                    'portfolio/online/online-4.png',
-                    'portfolio/online/online-5.png',
-                    'portfolio/online/online-6.png'
+                    'portfolio/online/online-1.jpg',
+                    'portfolio/online/online-2.jpg',
+                    'portfolio/online/online-3.jpg',
+                    'portfolio/online/online-4.jpg',
+                    'portfolio/online/online-5.jpg',
+                    'portfolio/online/online-6.jpg'
                 ]
             }
         }, {
@@ -126,10 +124,10 @@ function MasterCtrl ($scope, $sce)
                 title: "Mira la Marela",
                 desc: 'Video publicitario para la marca de bolsos y complementos taurinos Mira la Marela. El video fue rodado en una jornada en la fábrica de bolsos de la marca y en el Hotel  Wellington, donde se conto con la colaboración del maestro  David Mora.',
                 video: 'https://www.youtube.com/embed/5qrtxiAD_qw',
-                thumbnail: 'portfolio/marela/marela-1.png',
+                thumbnail: 'portfolio/marela/marela-1.jpg',
                 gallery: [
-                    'portfolio/marela/marela-1.png',
-                    'portfolio/marela/marela-2.png'
+                    'portfolio/marela/marela-1.jpg',
+                    'portfolio/marela/marela-2.jpg'
                 ]
             }
         }, {
@@ -148,21 +146,21 @@ function MasterCtrl ($scope, $sce)
                 title: "Unidad 16",
                 desc: 'Video de promoción de la unidad de cuerpo de bomberos de Sevilla. El video fue rodado en un edificio donde el cuerpo de bomberos suelen hacer simulacros de incendios. Se rodo practicamente a tiempo real, sin dar casi opción a repetir tomas, ya que la temperatura provocada por las llamas ascendía en algunos momentos a los 700ºc.',
                 video: 'https://www.youtube.com/embed/Z_ovNGD-t6Q',
-                thumbnail: 'portfolio/unidad16/unidad-16-1.png',
+                thumbnail: 'portfolio/unidad16/unidad-16-1.jpg',
                 gallery: [
-                    'portfolio/unidad16/unidad-16-1.png',
-                    'portfolio/unidad16/unidad-16-2.png',
-                    'portfolio/unidad16/unidad-16-3.png',
+                    'portfolio/unidad16/unidad-16-1.jpg',
+                    'portfolio/unidad16/unidad-16-2.jpg',
+                    'portfolio/unidad16/unidad-16-3.jpg',
                 ]
             },
             pasajeros: {
                 title: "Pasajeros",
                 desc: 'Video realizado para instituto de la mujer. El video fue grabado  a modo de guerrilla en un viaje en Ave Madrid -Barcelona. La sensación de melancolía fue retrada de forma elegante y cuidada.',
                 video: 'https://www.youtube.com/embed/gm0cOs_UtUY',
-                thumbnail: 'portfolio/pasajeros/pasajeros-1.png',
+                thumbnail: 'portfolio/pasajeros/pasajeros-1.jpg',
                 gallery: [
-                    'portfolio/pasajeros/pasajeros-1.png',
-                    'portfolio/pasajeros/pasajeros-2.png'
+                    'portfolio/pasajeros/pasajeros-1.jpg',
+                    'portfolio/pasajeros/pasajeros-2.jpg'
                 ]
             }
         }, {
@@ -170,7 +168,7 @@ function MasterCtrl ($scope, $sce)
                 title: "Movistar Cuello",
                 desc: 'Video viral para Movistar con gran impacto en las redes sociales. En clave de comedia se cuenta las enfermedades que surgen por la utilización desproporcionada del teléfono móvil. Rodaje muy divertido donde la actriz protagonista lo borda con ese puntito de excentricidad.',
                 video: 'https://www.youtube.com/embed/067vWVzAUCo',
-                thumbnail: 'portfolio/movistar-cuello/movistar-cuello-1.png',
+                thumbnail: 'portfolio/movistar-cuello/movistar-cuello-1.jpg',
                 gallery: []
             },
             activyl: {
@@ -189,7 +187,7 @@ function MasterCtrl ($scope, $sce)
                 title: "Qudum",
                 desc: 'Video publicitario para la nueva red social Qudum. La pieza fue rodada en plató con una decoración retro y un sentido del humor muy fresco. La anécdota de este rodaje fue la interpretación del personaje del abuelo, ya que era la primera vez que se ponía delante de una cámara. Nos dejó fascinados su espontaneidad y su frescura.',
                 video: 'https://www.youtube.com/embed/s4zLgtEcn_4',
-                thumbnail: 'portfolio/qudum/qudum-1.png',
+                thumbnail: 'portfolio/qudum/qudum-1.jpg',
                 gallery: []
             }
         }, {
@@ -220,7 +218,6 @@ function MasterCtrl ($scope, $sce)
     ];
 
 }
-
 
 core.controller('MasterCtrl', ['$scope', '$sce', MasterCtrl]);
 
