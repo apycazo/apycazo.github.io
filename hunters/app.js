@@ -246,7 +246,9 @@ core.run(['$rootScope', '$window', '$location', function ($rootScope, $window, $
     // Added a -50 pixel elem position fix to accomodate navbar gap
     $rootScope.navigateTo = function (eID) {
 
-        // $location.hash(eID)
+        // hide menu
+        $('.navbar-toggle').click();
+        
         var navbarGap = 50;
 
         function currentYPosition() {
@@ -291,7 +293,6 @@ core.run(['$rootScope', '$window', '$location', function ($rootScope, $window, $
             setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
             leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
         }
-
     }
 
 }]);
